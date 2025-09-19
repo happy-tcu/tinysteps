@@ -4,11 +4,19 @@ import { Card } from "@/components/ui/card";
 import { Settings, ArrowLeft, Volume2, VolumeX, Timer, Coffee } from "lucide-react";
 import { useAppData } from "@/hooks/useAppData";
 
-interface SettingsScreenProps {
-  onBack: () => void;
+interface AppPreferences {
+  reducedMotion: boolean;
+  highContrast: boolean;
+  hasCompletedOnboarding: boolean;
 }
 
-export const SettingsScreen = ({ onBack }: SettingsScreenProps) => {
+interface SettingsScreenProps {
+  onBack: () => void;
+  preferences?: AppPreferences;
+  onUpdatePreferences?: (preferences: AppPreferences | ((prev: AppPreferences) => AppPreferences)) => void;
+}
+
+export const SettingsScreen = ({ onBack, preferences, onUpdatePreferences }: SettingsScreenProps) => {
   const { appData, updateSettings } = useAppData();
   const [focusTime, setFocusTime] = useState(appData.settings.defaultFocusTime);
   const [breakTime, setBreakTime] = useState(appData.settings.defaultBreakTime);
