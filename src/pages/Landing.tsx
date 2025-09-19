@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Brain, Clock, Target, TrendingUp, ArrowRight, Play, CheckCircle } from 'lucide-react';
+import { Zap, Timer, Focus, Sparkles, Rocket, ChevronRight, Shield, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -50,7 +50,7 @@ const Landing = () => {
             className="text-lg px-8 py-6 bg-gradient-primary text-primary-foreground hover:opacity-90 shadow-focus"
             onClick={() => navigate('/auth')}
           >
-            <Play className="mr-2 text-current" />
+            <Rocket className="mr-2 text-current" />
             Start Focusing Now
           </Button>
           <Button 
@@ -60,7 +60,7 @@ const Landing = () => {
             onClick={() => navigate('/app')}
           >
             Try Demo
-            <ArrowRight className="ml-2 text-current" />
+            <ChevronRight className="ml-2 text-current" />
           </Button>
         </div>
 
@@ -99,19 +99,19 @@ const Landing = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
+                  <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
                   <p>One clear action at a time</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
+                  <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
                   <p>AI breaks down overwhelming tasks</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
+                  <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
                   <p>Clean, distraction-free interface</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
+                  <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
                   <p>Built by someone with ADHD</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const Landing = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="p-8 text-center border-2 hover:border-primary/30 transition-all shadow-soft hover:shadow-focus">
               <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Brain className="w-6 h-6 text-foreground" />
+                <Zap className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">AI Task Breakdown</h3>
               <p className="text-muted-foreground text-sm">
@@ -143,7 +143,7 @@ const Landing = () => {
 
             <Card className="p-8 text-center border-2 hover:border-secondary/30 transition-all shadow-soft hover:shadow-focus">
               <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-6 h-6 text-secondary-foreground" />
+                <Timer className="w-6 h-6 text-secondary-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Gentle Timers</h3>
               <p className="text-muted-foreground text-sm">
@@ -153,7 +153,7 @@ const Landing = () => {
 
             <Card className="p-8 text-center border-2 hover:border-accent/30 transition-all shadow-soft hover:shadow-focus">
               <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Target className="w-6 h-6 text-accent-foreground" />
+                <Focus className="w-6 h-6 text-accent-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Single Focus</h3>
               <p className="text-muted-foreground text-sm">
@@ -163,7 +163,7 @@ const Landing = () => {
 
             <Card className="p-8 text-center border-2 hover:border-warning/30 transition-all shadow-soft hover:shadow-focus">
               <div className="w-12 h-12 bg-warning rounded-lg flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-6 h-6 text-warning-foreground" />
+                <Sparkles className="w-6 h-6 text-warning-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Progress Tracking</h3>
               <p className="text-muted-foreground text-sm">
