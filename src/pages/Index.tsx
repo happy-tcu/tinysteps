@@ -1,12 +1,89 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { WelcomeScreen } from "@/components/WelcomeScreen";
+import { TaskCreationScreen } from "@/components/TaskCreationScreen";
+import { FocusTimer } from "@/components/FocusTimer";
+import { BreakScreen } from "@/components/BreakScreen";
+import { ProgressDashboard } from "@/components/ProgressDashboard";
+
+type AppState = 'welcome' | 'create-task' | 'focus-timer' | 'break' | 'progress';
+
+interface Task {
+  name: string;
+  duration: number;
+}
 
 const Index = () => {
+  const [currentState, setCurrentState] = useState<AppState>('welcome');
+  const [currentTask, setCurrentTask] = useState<Task | null>(null);
+
+  const handleStartFocus = () => {
+    setCurrentState('create-task');
+  };
+
+  const handleViewProgress = () => {
+    setCurrentState('progress');
+  };
+
+  const handleCreateTask = (taskName: string, duration: number) => {
+    setCurrentTask({ name: taskName, duration });
+    setCurrentState('focus-timer');
+  };
+
+  const handleFocusComplete = () => {
+    setCurrentState('break');
+  };
+
+  const handleBreakComplete = () => {
+    setCurrentState('welcome');
+  };
+
+  const handleStartNewTask = () => {
+    setCurrentTask(null);
+    setCurrentState('create-task');
+  };
+
+  const handleBackToWelcome = () => {
+    setCurrentTask(null);
+    setCurrentState('welcome');
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      {currentState === 'welcome' && (
+        <WelcomeScreen 
+          onStartFocus={handleStartFocus}
+          onViewProgress={handleViewProgress}
+        />
+      )}
+      
+      {currentState === 'create-task' && (
+        <TaskCreationScreen 
+          onBack={handleBackToWelcome}
+          onCreateTask={handleCreateTask}
+        />
+      )}
+      
+      {currentState === 'focus-timer' && currentTask && (
+        <FocusTimer 
+          task={currentTask.name}
+          duration={currentTask.duration}
+          onComplete={handleFocusComplete}
+          onBack={handleBackToWelcome}
+        />
+      )}
+      
+      {currentState === 'break' && (
+        <BreakScreen 
+          onBreakComplete={handleBreakComplete}
+          onStartNewTask={handleStartNewTask}
+        />
+      )}
+      
+      {currentState === 'progress' && (
+        <ProgressDashboard 
+          onBack={handleBackToWelcome}
+        />
+      )}
     </div>
   );
 };
