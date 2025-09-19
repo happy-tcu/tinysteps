@@ -209,12 +209,38 @@ const Landing = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t">
+      <footer className="py-12 border-t bg-muted/20">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-2xl font-bold mb-4 md:mb-0">TinySteps</div>
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="text-2xl font-bold mb-4">TinySteps</div>
+              <p className="text-muted-foreground text-sm max-w-md">
+                The productivity app that actually works. Break down any project into tiny, manageable steps and get things done without the overwhelm.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Help Center</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Privacy</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="pt-8 border-t flex flex-col md:flex-row justify-between items-center">
+            <div className="text-sm text-muted-foreground mb-4 md:mb-0">
+              © 2024 TinySteps. All rights reserved.
+            </div>
             <div className="text-sm text-muted-foreground">
-              Made with ❤️ for overwhelmed minds
+              Made with ❤️ for productive minds
             </div>
           </div>
         </div>
