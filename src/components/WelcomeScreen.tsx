@@ -25,7 +25,7 @@ export const WelcomeScreen = ({
     isAuthenticated
   } = useAuth();
   const todaysStats = getTodaysStats();
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30 relative overflow-hidden">
       {/* Clean Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -47,21 +47,33 @@ export const WelcomeScreen = ({
         </div>
       </header>
 
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-accent/5 rounded-full blur-xl animate-pulse delay-500"></div>
+      </div>
+
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-16">
+      <main className="container mx-auto px-6 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           
           {/* Left Side - Content */}
           <div className="space-y-8">
             {/* Main Heading */}
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Focus made
-                <br />
-                <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Break down overwhelming tasks into tiny, manageable steps. AI-powered productivity for minds that think differently.
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-5xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight">
+                  Your Focus,
+                  <br />
+                  <span className="bg-gradient-primary bg-clip-text text-transparent">Powered by AI</span>
+                </h1>
+                <h2 className="text-2xl lg:text-3xl font-medium text-muted-foreground/90">
+                  Focus made easy with AI-powered tools for better productivity
+                </h2>
+              </div>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                Break down overwhelming tasks into tiny, manageable steps. Designed specifically for minds that think differently, with adaptive timers and intelligent suggestions.
               </p>
             </div>
 
@@ -77,40 +89,67 @@ export const WelcomeScreen = ({
                   </div>}
               </div>}
 
-            {/* Action Button */}
-            <div className="space-y-4">
-              <Button onClick={onStartFocus} size="lg" className="h-14 px-8 text-lg bg-foreground text-background hover:bg-foreground/90">
-                <BrainCircuit className="w-5 h-5 mr-2" />
-                Start Focus Session
-              </Button>
-              
-              <Button variant="outline" size="lg" onClick={onViewProgress} className="h-12 px-8 ml-4">
-                <Trophy className="w-4 h-4 mr-2" />
-                View Progress
-              </Button>
+            {/* Action Buttons */}
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  onClick={onStartFocus} 
+                  size="lg" 
+                  className="group h-16 px-10 text-lg font-semibold bg-gradient-primary text-white hover:shadow-glow transition-all duration-300 hover:scale-[1.02] border-0"
+                >
+                  <BrainCircuit className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                  Start Focus Session
+                </Button>
+                
+                <div className="flex items-center gap-4">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={onViewProgress} 
+                    className="h-14 px-8 text-base font-medium border-2 hover:bg-muted/50 hover:border-primary/50 transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <Trophy className="w-5 h-5 mr-2" />
+                    View Progress
+                  </Button>
+                  
+                  {/* Subtle illustration accent */}
+                  <div className="hidden sm:block w-12 h-12 bg-gradient-soft rounded-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Feature List */}
-            <div className="space-y-4 pt-4">
-              <h3 className="text-lg font-semibold text-foreground">What you get:</h3>
-              <div className="grid grid-cols-1 gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                    
+            {/* Enhanced Feature List */}
+            <div className="space-y-6 pt-6">
+              <h3 className="text-xl font-bold text-foreground">What you get:</h3>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-muted/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Target className="w-5 h-5 text-primary" />
                   </div>
-                  <span className="text-foreground">Break tasks into tiny steps</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center">
-                    <Clock className="w-3 h-3 text-secondary" />
+                  <div>
+                    <span className="text-foreground font-medium">Break tasks into tiny steps</span>
+                    <p className="text-sm text-muted-foreground">Transform overwhelming projects into manageable actions</p>
                   </div>
-                  <span className="text-foreground">Gentle, adaptive timers</span>
                 </div>
-                {isAuthenticated && <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-warning/10 flex items-center justify-center">
-                      <BrainCircuit className="w-3 h-3 text-warning" />
+                <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-muted/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Clock className="w-5 h-5 text-secondary" />
+                  </div>
+                  <div>
+                    <span className="text-foreground font-medium">Gentle, adaptive timers</span>
+                    <p className="text-sm text-muted-foreground">Work at your own pace with flexible focus sessions</p>
+                  </div>
+                </div>
+                {isAuthenticated && <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-muted/30 transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-warning/20 to-warning/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <BrainCircuit className="w-5 h-5 text-warning" />
                     </div>
-                    <span className="text-foreground">AI-powered suggestions</span>
+                    <div>
+                      <span className="text-foreground font-medium">AI-powered suggestions</span>
+                      <p className="text-sm text-muted-foreground">Smart recommendations tailored to your workflow</p>
+                    </div>
                   </div>}
               </div>
             </div>
