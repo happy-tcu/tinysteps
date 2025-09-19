@@ -4,8 +4,9 @@ import { TaskCreationScreen } from "@/components/TaskCreationScreen";
 import { FocusTimer } from "@/components/FocusTimer";
 import { BreakScreen } from "@/components/BreakScreen";
 import { ProgressDashboard } from "@/components/ProgressDashboard";
+import { SettingsScreen } from "@/components/SettingsScreen";
 
-type AppState = 'welcome' | 'create-task' | 'focus-timer' | 'break' | 'progress';
+type AppState = 'welcome' | 'create-task' | 'focus-timer' | 'break' | 'progress' | 'settings';
 
 interface Task {
   name: string;
@@ -22,6 +23,10 @@ const Index = () => {
 
   const handleViewProgress = () => {
     setCurrentState('progress');
+  };
+
+  const handleOpenSettings = () => {
+    setCurrentState('settings');
   };
 
   const handleCreateTask = (taskName: string, duration: number) => {
@@ -53,6 +58,7 @@ const Index = () => {
         <WelcomeScreen 
           onStartFocus={handleStartFocus}
           onViewProgress={handleViewProgress}
+          onOpenSettings={handleOpenSettings}
         />
       )}
       
@@ -81,6 +87,12 @@ const Index = () => {
       
       {currentState === 'progress' && (
         <ProgressDashboard 
+          onBack={handleBackToWelcome}
+        />
+      )}
+      
+      {currentState === 'settings' && (
+        <SettingsScreen 
           onBack={handleBackToWelcome}
         />
       )}

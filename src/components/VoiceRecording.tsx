@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
+import { Mic, MicOff, Volume2, VolumeX, AlertCircle } from 'lucide-react';
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition';
 
 interface VoiceRecordingProps {
@@ -12,6 +12,8 @@ interface VoiceRecordingProps {
 export const VoiceRecording = ({ onTranscriptChange, disabled }: VoiceRecordingProps) => {
   const { transcript, isListening, isSupported, startListening, stopListening, resetTranscript } = useSpeechRecognition();
   const [waveformData, setWaveformData] = useState<number[]>(Array(20).fill(0));
+  const [permissionDenied, setPermissionDenied] = useState(false);
+  const [permissionRequested, setPermissionRequested] = useState(false);
 
   useEffect(() => {
     onTranscriptChange(transcript);
@@ -34,10 +36,23 @@ export const VoiceRecording = ({ onTranscriptChange, disabled }: VoiceRecordingP
     return () => clearInterval(interval);
   }, [isListening]);
 
-  const handleToggleRecording = () => {
+  const handleToggleRecording = async () => {
     if (isListening) {
       stopListening();
     } else {
+      // Request microphone permission first
+      if (!permissionRequested) {
+        setPermissionRequested(true);
+        try {
+          await navigator.mediaDevices.getUserMedia({ audio: true });
+          setPermissionDenied(false);
+        } catch (error) {
+          console.error('Microphone permission denied:', error);
+          setPermissionDenied(true);
+          return;
+        }
+      }
+      
       resetTranscript();
       startListening();
     }
@@ -56,6 +71,32 @@ export const VoiceRecording = ({ onTranscriptChange, disabled }: VoiceRecordingP
               Please use a modern browser or type your task instead
             </p>
           </div>
+        </div>
+      </Card>
+    );
+  }
+
+  if (permissionDenied) {
+    return (
+      <Card className="p-4 bg-destructive/10 border-destructive/30">
+        <div className="flex items-center gap-3">
+          <AlertCircle className="w-5 h-5 text-destructive" />
+          <div className="flex-1">
+            <p className="text-sm font-medium text-destructive">
+              Microphone access required
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Please allow microphone access in your browser settings and refresh the page
+            </p>
+          </div>
+          <Button 
+            size="sm" 
+            variant="outline"
+            onClick={() => window.location.reload()}
+            className="text-xs"
+          >
+            Refresh
+          </Button>
         </div>
       </Card>
     );

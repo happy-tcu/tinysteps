@@ -51,6 +51,9 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
 
     recognitionRef.current.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
+      if (event.error === 'not-allowed') {
+        console.warn('Microphone permission denied');
+      }
       setIsListening(false);
     };
 
