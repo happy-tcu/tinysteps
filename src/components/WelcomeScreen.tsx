@@ -63,20 +63,6 @@ export const WelcomeScreen = ({
           
           {/* Left Side - Content */}
           <div className="space-y-10 max-w-2xl">
-            {/* Video Section */}
-            <div className="mb-8">
-              <video 
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                className="w-full max-w-md mx-auto rounded-lg shadow-lg"
-              >
-                <source src="/assets/intro-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-
             {/* Main Heading */}
             <div className="space-y-8">
               <h1 className="text-6xl lg:text-7xl font-bold text-black leading-[1.1] tracking-tight">
@@ -130,39 +116,57 @@ export const WelcomeScreen = ({
               </div>
             </div>
 
-            {/* Enhanced Feature List */}
+            {/* Enhanced Feature List with Video */}
             <div className="space-y-6 pt-6">
-              <h3 className="text-xl font-bold text-black">What you get:</h3>
-              <div className="grid grid-cols-1 gap-4">
-                <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Target className="w-5 h-5 text-black" />
-                  </div>
-                  <div>
-                    <span className="text-black font-medium">Break tasks into tiny steps</span>
-                    <p className="text-sm text-black/60">Transform overwhelming projects into manageable actions</p>
+              <div className="flex flex-col lg:flex-row gap-8 items-start">
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-black mb-6">What you get:</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Target className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <span className="text-black font-medium">Break tasks into tiny steps</span>
+                        <p className="text-sm text-black/60">Transform overwhelming projects into manageable actions</p>
+                      </div>
+                    </div>
+                    <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Clock className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <span className="text-black font-medium">Gentle, adaptive timers</span>
+                        <p className="text-sm text-black/60">Work at your own pace with flexible focus sessions</p>
+                      </div>
+                    </div>
+                    {isAuthenticated && (
+                      <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
+                        <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <BrainCircuit className="w-5 h-5 text-black" />
+                        </div>
+                        <div>
+                          <span className="text-black font-medium">AI-powered suggestions</span>
+                          <p className="text-sm text-black/60">Smart recommendations tailored to your workflow</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Clock className="w-5 h-5 text-black" />
-                  </div>
-                  <div>
-                    <span className="text-black font-medium">Gentle, adaptive timers</span>
-                    <p className="text-sm text-black/60">Work at your own pace with flexible focus sessions</p>
-                  </div>
+                
+                {/* Video Section */}
+                <div className="lg:w-80">
+                  <video 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                    className="w-full rounded-lg shadow-lg"
+                  >
+                    <source src="/assets/intro-video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
-                {isAuthenticated && (
-                  <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <BrainCircuit className="w-5 h-5 text-black" />
-                    </div>
-                    <div>
-                      <span className="text-black font-medium">AI-powered suggestions</span>
-                      <p className="text-sm text-black/60">Smart recommendations tailored to your workflow</p>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
