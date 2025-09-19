@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Zap, Timer, Focus, Sparkles, Rocket, ChevronRight, Shield, CheckCircle2, Skull, Zap as Lightning, BrainCircuit } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '@/components/ThemeToggle';
+import logo from '@/assets/logo.png';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -14,7 +15,10 @@ const Landing = () => {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</div>
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="TinySteps" className="h-8 w-8" />
+            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
+          </div>
           <div className="flex gap-2 items-center">
             <ThemeToggle />
             <Button variant="ghost" onClick={() => navigate('/auth')}>
@@ -212,8 +216,11 @@ const Landing = () => {
       <footer className="py-12 border-t bg-muted/20">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="md:col-span-2">
-              <div className="text-2xl font-bold mb-4">TinySteps</div>
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <img src={logo} alt="TinySteps" className="h-8 w-8" />
+                <span className="text-2xl font-bold">TinySteps</span>
+              </div>
               <p className="text-muted-foreground text-sm max-w-md">
                 The productivity app that actually works. Break down any project into tiny, manageable steps and get things done without the overwhelm.
               </p>
