@@ -6,6 +6,7 @@ import { Zap, Timer, Focus, Sparkles, Rocket, ChevronRight, Shield, CheckCircle2
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '@/components/ThemeToggle';
 import logo from '@/assets/logo.png';
+import intrusiveThoughts from '@/assets/intrusive-thoughts.svg';
 const Landing = () => {
   const navigate = useNavigate();
   return <div className="min-h-screen bg-background">
@@ -54,6 +55,17 @@ const Landing = () => {
             Learn More
             <ChevronRight className="ml-2 text-current" />
           </Button>
+        </div>
+
+        {/* ADHD Illustration */}
+        <div className="flex justify-center mb-12">
+          <div className="max-w-md w-full">
+            <img 
+              src={intrusiveThoughts} 
+              alt="ADHD brain with intrusive thoughts illustration" 
+              className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
         </div>
 
         {/* Social Proof */}
