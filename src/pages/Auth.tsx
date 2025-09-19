@@ -22,7 +22,7 @@ const Auth = () => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        navigate('/');
+        navigate('/app');
       }
     };
     checkUser();
@@ -79,7 +79,7 @@ const Auth = () => {
 
       if (error) throw error;
 
-      navigate('/');
+      navigate('/app');
     } catch (error: any) {
       toast({
         variant: "destructive",
