@@ -78,60 +78,106 @@ const Landing = () => {
         <div className="text-center space-y-12">
           <p className="text-base text-muted-foreground font-medium">Trusted by productive people worldwide</p>
           
-          {/* Company/School Logos */}
-          <div className="flex flex-wrap justify-center items-center gap-16 lg:gap-20">
-            {/* TCU */}
-            <div className="flex items-center justify-center">
-              <img 
-                src={tcuLogo} 
-                alt="TCU" 
-                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
-              />
-            </div>
-            
-            {/* TechCorp */}
-            <div className="flex items-center justify-center">
-              <img 
-                src={techcorpLogo} 
-                alt="TechCorp" 
-                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
-              />
-            </div>
-            
-            {/* Adobe */}
-            <div className="flex items-center justify-center">
-              <img 
-                src={adobeLogo} 
-                alt="Adobe" 
-                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
-              />
-            </div>
-            
-            {/* Medical College */}
-            <div className="flex items-center justify-center">
-              <img 
-                src={medicalCollegeLogo} 
-                alt="Medical College" 
-                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
-              />
-            </div>
-            
-            {/* InnoLabs */}
-            <div className="flex items-center justify-center">
-              <img 
-                src={innolabsLogo} 
-                alt="InnoLabs" 
-                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
-              />
-            </div>
-            
-            {/* OpenAI */}
-            <div className="flex items-center justify-center">
-              <img 
-                src={openaiLogo} 
-                alt="OpenAI" 
-                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
-              />
+          {/* Animated Logo Slider */}
+          <div className="overflow-hidden">
+            <div className="flex items-center gap-24 animate-[scroll_20s_linear_infinite] hover:pause">
+              {/* First set of logos */}
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={tcuLogo} 
+                  alt="TCU" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={techcorpLogo} 
+                  alt="TechCorp" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={adobeLogo} 
+                  alt="Adobe" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={medicalCollegeLogo} 
+                  alt="Medical College" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={innolabsLogo} 
+                  alt="InnoLabs" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={openaiLogo} 
+                  alt="OpenAI" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+
+              {/* Duplicate set for seamless loop */}
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={tcuLogo} 
+                  alt="TCU" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={techcorpLogo} 
+                  alt="TechCorp" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={adobeLogo} 
+                  alt="Adobe" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={medicalCollegeLogo} 
+                  alt="Medical College" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={innolabsLogo} 
+                  alt="InnoLabs" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
+              
+              <div className="flex items-center justify-center min-w-0">
+                <img 
+                  src={openaiLogo} 
+                  alt="OpenAI" 
+                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                />
+              </div>
             </div>
           </div>
         </div>
