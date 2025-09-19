@@ -5,6 +5,7 @@ import { FocusTimer } from "@/components/FocusTimer";
 import { BreakScreen } from "@/components/BreakScreen";
 import { ProgressDashboard } from "@/components/ProgressDashboard";
 import { SettingsScreen } from "@/components/SettingsScreen";
+import AuthGuard from "@/components/AuthGuard";
 
 type AppState = 'welcome' | 'create-task' | 'focus-timer' | 'break' | 'progress' | 'settings';
 
@@ -53,7 +54,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <AuthGuard>
+      <div className="min-h-screen">
       {currentState === 'welcome' && (
         <WelcomeScreen 
           onStartFocus={handleStartFocus}
@@ -96,7 +98,8 @@ const Index = () => {
           onBack={handleBackToWelcome}
         />
       )}
-    </div>
+      </div>
+    </AuthGuard>
   );
 };
 
