@@ -49,6 +49,53 @@
     --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
+  }
+
+  /* Colorful theme */
+  .colorful {
+    /* Warm, ADHD-friendly backgrounds */
+    --background: 45 50% 98%;
+    --foreground: 220 13% 18%;
+
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
+
+    /* Primary - Calming blue */
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 98%;
+    --primary-soft: 214 32% 91%;
+
+    /* Secondary - Gentle purple */
+    --secondary: 263 55% 52%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-soft: 263 24% 87%;
+
+    /* Muted tones */
+    --muted: 45 25% 95%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Accent - Energizing green */
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 98%;
+    --accent-soft: 142 25% 91%;
+
+    /* Warning - Warm orange */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 98%;
+    --warning-soft: 25 34% 91%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 214 84% 56%;
+
+    --radius: 0.75rem;
 
     /* Minimal gradients */
     --gradient-primary: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 20%));
@@ -56,6 +103,15 @@
     --gradient-focus: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 15%));
     --gradient-success: linear-gradient(135deg, hsl(0 0% 15%), hsl(0 0% 25%));
     --gradient-background: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 98%));
+  }
+
+  /* Colorful gradients */
+  .colorful {
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%), hsl(214 84% 66%));
+    --gradient-soft: linear-gradient(135deg, hsl(45 50% 98%), hsl(45 25% 95%));
+    --gradient-focus: linear-gradient(135deg, hsl(214 84% 56%), hsl(263 55% 52%));
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(142 71% 55%));
+    --gradient-background: linear-gradient(135deg, hsl(45 50% 98%), hsl(214 32% 91%));
 
     /* Subtle shadows */
     --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
