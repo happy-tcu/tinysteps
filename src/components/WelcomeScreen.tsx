@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play, Target, Trophy, Clock, Settings, LogOut, BrainCircuit } from "lucide-react";
 import logo from "@/assets/logo.png";
-import adhdOverwhelm from "@/assets/adhd-overwhelm.png";
-import adhdFocused from "@/assets/adhd-focused.png";
+import procrastinationIllustration from "@/assets/procrastination-illustration.svg";
 import { useAppData } from "@/hooks/useAppData";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -136,54 +135,14 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
             </div>
           </div>
 
-          {/* Right Side - ADHD Illustrations */}
+          {/* Right Side - Illustration */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="space-y-6 w-full max-w-md">
-              
-              {/* Before State - Overwhelm */}
-              <Card className="p-6 bg-gradient-to-br from-background to-destructive/5 border border-border/50 shadow-lg">
-                <div className="flex items-center gap-4">
-                  <img src={adhdOverwhelm} alt="ADHD Overwhelm" className="w-20 h-20 rounded-xl object-cover" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Before TinySteps</h3>
-                    <p className="text-sm text-muted-foreground">Scattered thoughts, overwhelming tasks, endless distractions</p>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Transformation Arrow */}
-              <div className="flex justify-center">
-                <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
-                  <BrainCircuit className="w-4 h-4 text-white" />
-                </div>
-              </div>
-
-              {/* After State - Focused */}
-              <Card className="p-6 bg-gradient-to-br from-background to-success/5 border border-border/50 shadow-lg">
-                <div className="flex items-center gap-4">
-                  <img src={adhdFocused} alt="ADHD Focused" className="w-20 h-20 rounded-xl object-cover" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">With TinySteps</h3>
-                    <p className="text-sm text-muted-foreground">Clear focus, manageable steps, productive flow</p>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Stats Visual */}
-              <div className="bg-gradient-soft rounded-xl p-4 border border-border/30">
-                <div className="text-center space-y-2">
-                  <div className="text-sm text-muted-foreground">Your progress today</div>
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
-                    <div className="h-full w-3/4 bg-gradient-primary rounded-full transition-all duration-500"></div>
-                  </div>
-                  <div className="text-xs text-muted-foreground">3 of 4 tasks completed</div>
-                </div>
-              </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 bg-primary/20 rounded-full blur-sm"></div>
-              <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-secondary/20 rounded-full blur-sm"></div>
-              <div className="absolute top-1/3 -right-3 w-3 h-3 bg-accent/20 rounded-full blur-sm"></div>
+            <div className="w-full max-w-lg">
+              <img 
+                src={procrastinationIllustration} 
+                alt="Focus and productivity illustration" 
+                className="w-full h-auto filter grayscale contrast-125 brightness-110"
+              />
             </div>
           </div>
 
