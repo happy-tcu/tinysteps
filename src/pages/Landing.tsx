@@ -50,8 +50,8 @@ const Landing = () => {
             <Rocket className="mr-2 text-current" />
             Start Focusing Now
           </Button>
-          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => navigate('/app')}>
-            Try Demo
+          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+            Learn More
             <ChevronRight className="ml-2 text-current" />
           </Button>
         </div>
@@ -113,7 +113,7 @@ const Landing = () => {
       </section>
 
       {/* Features */}
-      <section className="py-20">
+      <section id="features" className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Features that actually help</h2>
