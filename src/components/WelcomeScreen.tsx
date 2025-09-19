@@ -100,12 +100,7 @@ export const WelcomeScreen = ({
                   </div>
                   <span className="text-foreground">Break tasks into tiny steps</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center">
-                    <Clock className="w-3 h-3 text-secondary" />
-                  </div>
-                  <span className="text-foreground">Gentle, adaptive timers</span>
-                </div>
+                
                 {isAuthenticated && <div className="flex items-center gap-3">
                     <div className="w-6 h-6 rounded-full bg-warning/10 flex items-center justify-center">
                       <BrainCircuit className="w-3 h-3 text-warning" />
