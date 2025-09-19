@@ -96,15 +96,25 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
                 Start Focus Session
               </Button>
               
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={onViewProgress}
-                className="h-12 px-8 ml-4"
-              >
-                <Trophy className="w-4 h-4 mr-2" />
-                View Progress
-              </Button>
+              <div className="flex items-center gap-4">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={onViewProgress}
+                  className="h-12 px-8"
+                >
+                  <Trophy className="w-4 h-4 mr-2" />
+                  View Progress
+                </Button>
+                
+                <div className="w-16 h-16 flex-shrink-0">
+                  <img 
+                    src={procrastinationIllustration} 
+                    alt="Productivity illustration" 
+                    className="w-full h-full object-contain filter grayscale contrast-125 brightness-110"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Feature List */}
