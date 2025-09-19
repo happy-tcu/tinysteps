@@ -40,10 +40,10 @@ const Landing = () => {
       <section className="relative container mx-auto px-6 py-20 text-center bg-gradient-background overflow-hidden">
         {/* Subtle background pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03] bg-cover bg-center pointer-events-none" 
+          className="absolute inset-0 opacity-[0.03] bg-repeat bg-center pointer-events-none" 
           style={{
             backgroundImage: `url(${abstractBg})`,
-            backgroundSize: 'cover'
+            backgroundSize: '1200px 600px'
           }}
         />
         <Badge variant="outline" className="mb-6 px-6 py-2 border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
