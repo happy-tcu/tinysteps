@@ -215,8 +215,8 @@ const Landing = () => {
       {/* Footer */}
       <footer className="py-12 border-t bg-muted/20">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <img src={logo} alt="TinySteps" className="h-8 w-8" />
                 <span className="text-2xl font-bold">TinySteps</span>
