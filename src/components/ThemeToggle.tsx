@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Palette, Square } from 'lucide-react';
+import { Palette, Contrast } from 'lucide-react';
 
 const ThemeToggle = () => {
   const [isColorful, setIsColorful] = useState(false);
@@ -35,7 +35,7 @@ const ThemeToggle = () => {
       title={isColorful ? "Switch to Black & White" : "Switch to Colorful"}
     >
       {isColorful ? (
-        <Square className="h-4 w-4" />
+        <Contrast className="h-4 w-4" />
       ) : (
         <Palette className="h-4 w-4" />
       )}
