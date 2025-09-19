@@ -47,7 +47,7 @@ const Landing = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <Button size="lg" className="text-lg px-8 py-6 bg-foreground text-primary-foreground hover:bg-foreground/90 shadow-focus" onClick={() => navigate('/auth')}>
-            <Zap className="mr-2 text-current" />
+            <BrainCircuit className="mr-2 text-current" />
             Start Focusing Now
           </Button>
           <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
