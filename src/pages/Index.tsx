@@ -55,7 +55,7 @@ const Index = () => {
 
   return (
     <AuthGuard>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-background">
       {currentState === 'welcome' && (
         <WelcomeScreen 
           onStartFocus={handleStartFocus}
