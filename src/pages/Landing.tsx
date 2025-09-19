@@ -47,7 +47,7 @@ const Landing = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <Button 
             size="lg" 
-            className="text-lg px-8 py-6 bg-foreground text-background hover:bg-foreground/90 shadow-focus"
+            className="text-lg px-8 py-6 bg-foreground text-primary-foreground hover:bg-foreground/90 shadow-focus"
             onClick={() => navigate('/auth')}
           >
             <Rocket className="mr-2 text-current" />
