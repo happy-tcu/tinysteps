@@ -110,6 +110,191 @@ export type Database = {
         }
         Relationships: []
       }
+      focus_sessions: {
+        Row: {
+          actual_duration: number | null
+          ai_feedback: Json | null
+          completed: boolean | null
+          completed_at: string | null
+          created_at: string
+          id: string
+          notes: string | null
+          planned_duration: number
+          quality_rating: number | null
+          started_at: string
+          task_id: string | null
+          task_title: string
+          user_id: string
+        }
+        Insert: {
+          actual_duration?: number | null
+          ai_feedback?: Json | null
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          planned_duration: number
+          quality_rating?: number | null
+          started_at?: string
+          task_id?: string | null
+          task_title: string
+          user_id: string
+        }
+        Update: {
+          actual_duration?: number | null
+          ai_feedback?: Json | null
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          planned_duration?: number
+          quality_rating?: number | null
+          started_at?: string
+          task_id?: string | null
+          task_title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "focus_sessions_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          preferences: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          preferences?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          preferences?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          ai_breakdown: Json | null
+          ai_generated: boolean | null
+          category: string | null
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          duration: number
+          id: string
+          priority: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_breakdown?: Json | null
+          ai_generated?: boolean | null
+          category?: string | null
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number
+          id?: string
+          priority?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_breakdown?: Json | null
+          ai_generated?: boolean | null
+          category?: string | null
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number
+          id?: string
+          priority?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_stats: {
+        Row: {
+          achievements: Json | null
+          created_at: string
+          current_streak: number | null
+          daily_streak_count: number | null
+          id: string
+          last_session_date: string | null
+          level: number | null
+          longest_streak: number | null
+          total_focus_time: number | null
+          total_points: number | null
+          total_sessions: number | null
+          updated_at: string
+          user_id: string
+          weekly_goal: number | null
+        }
+        Insert: {
+          achievements?: Json | null
+          created_at?: string
+          current_streak?: number | null
+          daily_streak_count?: number | null
+          id?: string
+          last_session_date?: string | null
+          level?: number | null
+          longest_streak?: number | null
+          total_focus_time?: number | null
+          total_points?: number | null
+          total_sessions?: number | null
+          updated_at?: string
+          user_id: string
+          weekly_goal?: number | null
+        }
+        Update: {
+          achievements?: Json | null
+          created_at?: string
+          current_streak?: number | null
+          daily_streak_count?: number | null
+          id?: string
+          last_session_date?: string | null
+          level?: number | null
+          longest_streak?: number | null
+          total_focus_time?: number | null
+          total_points?: number | null
+          total_sessions?: number | null
+          updated_at?: string
+          user_id?: string
+          weekly_goal?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
