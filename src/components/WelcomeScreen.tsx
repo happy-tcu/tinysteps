@@ -52,7 +52,7 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[70vh]">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           
           {/* Left Side - Content */}
           <div className="space-y-8">
