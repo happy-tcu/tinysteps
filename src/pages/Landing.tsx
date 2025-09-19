@@ -80,7 +80,7 @@ const Landing = () => {
           
           {/* Logo Slider */}
           <div className="w-full overflow-hidden bg-muted/20 py-8 rounded-lg">
-            <div className="flex items-center gap-16 animate-[scroll_30s_linear_infinite] hover:animate-none" style={{width: 'calc(200% + 4rem)'}}>
+            <div className="flex items-center gap-16 animate-[scroll_40s_linear_infinite] hover:animate-none" style={{width: 'calc(200% + 4rem)'}}>
               {/* First set of logos */}
               <div className="flex items-center justify-center min-w-[120px]">
                 <img 
