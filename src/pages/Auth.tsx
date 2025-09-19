@@ -6,8 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/use-toast';
-import { Brain, Focus, Timer, TrendingUp } from 'lucide-react';
+import { Brain, Focus, Timer, TrendingUp, ArrowLeft } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import logo from '@/assets/logo.png';
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -93,6 +94,18 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen bg-gradient-background flex items-center justify-center p-4">
+      {/* Header with back button */}
+      <div className="absolute top-6 left-6">
+        <Button 
+          variant="ghost" 
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 text-foreground hover:bg-background/10"
+        >
+          <img src={logo} alt="TinySteps" className="h-6 w-6" />
+          <span className="font-semibold">TinySteps</span>
+        </Button>
+      </div>
+      
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
         {/* Hero Section */}
         <div className="space-y-6 text-center lg:text-left">
