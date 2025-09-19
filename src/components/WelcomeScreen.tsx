@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Play, Target, Trophy, Clock, Settings, LogOut, BrainCircuit, 
   Check, Star, Users, Zap, ArrowRight, ChevronRight, X,
-  Heart, Timer, Award, BarChart3
+  Heart, Timer, Award, BarChart3, Brain, Sparkles
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import adhdOverwhelm from "@/assets/adhd-overwhelm.png";
@@ -13,6 +13,7 @@ import adhdFocused from "@/assets/adhd-focused.png";
 import { useAppData } from "@/hooks/useAppData";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface WelcomeScreenProps {
   onStartFocus: () => void;
@@ -31,6 +32,13 @@ export const WelcomeScreen = ({
 }: WelcomeScreenProps) => {
   const [showOnboarding, setShowOnboarding] = useState(!hasCompletedOnboarding);
   const [currentStep, setCurrentStep] = useState(0);
+  const [aiSettings] = useLocalStorage('aiSettings', {
+    openaiApiKey: '',
+    enableAiSuggestions: true,
+    enableAiBreakdown: true,
+    enableAiCoaching: true,
+  });
+  
   const {
     appData,
     getTodaysStats
@@ -81,24 +89,28 @@ export const WelcomeScreen = ({
 
   const features = [
     {
-      icon: <Zap className="w-4 h-4" />,
-      title: "Break tasks into tiny steps",
-      description: "Never feel overwhelmed again"
+      icon: <Brain className="w-4 h-4" />,
+      title: "AI Task Breakdown",
+      description: "Smart step-by-step guidance",
+      highlight: true
     },
     {
-      icon: <BrainCircuit className="w-4 h-4" />,
-      title: "AI-powered suggestions",
-      description: "Personalized for ADHD minds"
+      icon: <Sparkles className="w-4 h-4" />,
+      title: "AI Suggestions",
+      description: "Personalized task recommendations",
+      highlight: true
     },
     {
       icon: <Timer className="w-4 h-4" />,
-      title: "Focus timer with breaks",
-      description: "Pomodoro technique optimized"
+      title: "Focus Timer",
+      description: "Pomodoro technique optimized",
+      highlight: false
     },
     {
       icon: <Award className="w-4 h-4" />,
-      title: "Progress tracking",
-      description: "Build streaks and earn points"
+      title: "Progress Tracking",
+      description: "Build streaks and earn points",
+      highlight: false
     }
   ];
 
@@ -171,7 +183,12 @@ export const WelcomeScreen = ({
           <div className="flex items-center gap-3">
             <img src={logo} alt="TinySteps - ADHD Focus Assistant" className="h-8 w-8" />
             <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
-            <Badge variant="secondary" className="text-xs">ADHD-Friendly</Badge>
+            <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
+            {!aiSettings.openaiApiKey && (
+              <Badge variant="outline" className="text-xs text-orange-600 border-orange-200">
+                Setup Required
+              </Badge>
+            )}
           </div>
           <nav role="navigation" aria-label="Main navigation" className="flex gap-2">
             <Button 
@@ -213,10 +230,34 @@ export const WelcomeScreen = ({
                 Focus made
                 <br />
                 <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
+                <span className="text-2xl block text-muted-foreground font-normal mt-2">with AI</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Break down overwhelming tasks into tiny, manageable steps. AI-powered productivity for minds that think differently.
               </p>
+              
+              {/* AI Status Alert */}
+              {!aiSettings.openaiApiKey && (
+                <div className="p-4 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <Brain className="w-5 h-5 text-orange-600 mt-0.5" />
+                    <div>
+                      <h3 className="font-medium text-orange-900 dark:text-orange-100">AI Features Available</h3>
+                      <p className="text-sm text-orange-700 dark:text-orange-200 mt-1">
+                        Add your OpenAI API key in Settings to unlock AI task breakdown, suggestions, and coaching.
+                      </p>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={onOpenSettings}
+                        className="mt-2 border-orange-300 text-orange-700 hover:bg-orange-100"
+                      >
+                        Setup AI Features
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Action Buttons */}
@@ -272,12 +313,25 @@ export const WelcomeScreen = ({
               <ul className="grid grid-cols-1 gap-3" role="list">
                 {features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                    <div className={cn(
+                      "w-6 h-6 rounded-full flex items-center justify-center",
+                      feature.highlight 
+                        ? "bg-gradient-primary text-white" 
+                        : "bg-primary/10 text-primary"
+                    )}>
                       {feature.icon}
                     </div>
                     <div>
-                      <span className="font-medium text-foreground">{feature.title}</span>
+                      <span className={cn(
+                        "font-medium",
+                        feature.highlight ? "text-foreground" : "text-foreground"
+                      )}>
+                        {feature.title}
+                      </span>
                       <span className="text-muted-foreground"> - {feature.description}</span>
+                      {feature.highlight && (
+                        <Badge variant="secondary" className="ml-2 text-xs">AI</Badge>
+                      )}
                     </div>
                   </li>
                 ))}
