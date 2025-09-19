@@ -175,19 +175,19 @@ const Landing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-focus text-primary-foreground">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mb-4 text-foreground">
             Ready to take your first tiny step?
           </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of people with ADHD who are getting things done, one small step at a time.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="text-lg px-8 py-6 bg-background text-foreground hover:bg-background/90 shadow-success"
+              className="text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-success"
               onClick={() => navigate('/auth')}
             >
               Start Free Today
@@ -202,7 +202,7 @@ const Landing = () => {
             </Button>
           </div>
 
-          <p className="text-sm text-primary-foreground/60 mt-6">
+          <p className="text-sm text-muted-foreground mt-6">
             Free forever • No credit card required • Cancel anytime
           </p>
         </div>
