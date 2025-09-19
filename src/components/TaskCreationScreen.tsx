@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Timer, Target, Lightbulb } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowLeft, Timer, Target, Lightbulb, Mic, Keyboard } from "lucide-react";
+import { VoiceRecording } from "./VoiceRecording";
+import { useAppData } from "@/hooks/useAppData";
 
 interface TaskCreationScreenProps {
   onBack: () => void;
@@ -10,8 +13,11 @@ interface TaskCreationScreenProps {
 }
 
 export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenProps) => {
+  const { appData } = useAppData();
   const [task, setTask] = useState("");
-  const [selectedDuration, setSelectedDuration] = useState(25);
+  const [selectedDuration, setSelectedDuration] = useState(appData.settings.defaultFocusTime);
+  const [voiceTranscript, setVoiceTranscript] = useState("");
+  const [inputMode, setInputMode] = useState<'type' | 'voice'>('type');
   
   const durations = [
     { value: 10, label: "10 min", description: "Quick task" },
@@ -20,12 +26,23 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
     { value: 45, label: "45 min", description: "Deep work" }
   ];
 
+  
+  // Update task when voice transcript changes
+  useEffect(() => {
+    if (voiceTranscript && inputMode === 'voice') {
+      setTask(voiceTranscript);
+    }
+  }, [voiceTranscript, inputMode]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (task.trim()) {
-      onCreateTask(task.trim(), selectedDuration);
+    const finalTask = inputMode === 'voice' ? voiceTranscript : task;
+    if (finalTask.trim()) {
+      onCreateTask(finalTask.trim(), selectedDuration);
     }
   };
+
+  const currentTask = inputMode === 'voice' ? voiceTranscript : task;
 
   const suggestions = [
     "Read 5 pages of my book",
@@ -50,8 +67,8 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
       <div className="flex-1 max-w-2xl mx-auto w-full">
         <Card className="p-8 shadow-soft bg-card/80 backdrop-blur-sm">
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Task Input */}
-            <div className="space-y-3">
+            {/* Task Input with Tabs for Voice/Text */}
+            <div className="space-y-4">
               <div className="flex items-center gap-2 mb-4">
                 <Target className="w-6 h-6 text-primary" />
                 <label className="text-lg font-semibold text-foreground">
@@ -59,13 +76,34 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
                 </label>
               </div>
               
-              <Input
-                value={task}
-                onChange={(e) => setTask(e.target.value)}
-                placeholder="e.g., Read one chapter of my book"
-                className="h-14 text-lg border-2 border-border focus:border-primary transition-smooth"
-                autoFocus
-              />
+              <Tabs value={inputMode} onValueChange={(value) => setInputMode(value as 'type' | 'voice')} className="w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-4">
+                  <TabsTrigger value="type" className="flex items-center gap-2">
+                    <Keyboard className="w-4 h-4" />
+                    Type
+                  </TabsTrigger>
+                  <TabsTrigger value="voice" className="flex items-center gap-2">
+                    <Mic className="w-4 h-4" />
+                    Voice
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="type" className="space-y-3">
+                  <Input
+                    value={task}
+                    onChange={(e) => setTask(e.target.value)}
+                    placeholder="e.g., Read one chapter of my book"
+                    className="h-14 text-lg border-2 border-border focus:border-primary transition-smooth"
+                    autoFocus
+                  />
+                </TabsContent>
+                
+                <TabsContent value="voice" className="space-y-3">
+                  <VoiceRecording 
+                    onTranscriptChange={setVoiceTranscript}
+                  />
+                </TabsContent>
+              </Tabs>
               
               <p className="text-sm text-muted-foreground">
                 Keep it small and specific. You've got this! 💙
@@ -104,7 +142,7 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
             {/* Submit Button */}
             <Button
               type="submit"
-              disabled={!task.trim()}
+              disabled={!currentTask.trim()}
               className="w-full h-14 text-lg font-semibold bg-gradient-primary hover:shadow-focus transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Timer className="w-6 h-6 mr-3" />

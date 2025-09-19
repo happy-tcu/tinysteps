@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play, Pause, Square, ArrowLeft } from "lucide-react";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
+import { useAppData } from "@/hooks/useAppData";
 
 interface FocusTimerProps {
   task: string;
@@ -11,9 +13,12 @@ interface FocusTimerProps {
 }
 
 export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerProps) => {
+  const { addCompletedTask } = useAppData();
+  const { playSuccess, playStart, playProgress } = useSoundEffects();
   const [timeLeft, setTimeLeft] = useState(duration * 60); // convert to seconds
   const [isRunning, setIsRunning] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [progressSoundsPlayed, setProgressSoundsPlayed] = useState({ fifty: false, eighty: false });
   
   const totalTime = duration * 60;
   const progress = ((totalTime - timeLeft) / totalTime) * 100;
@@ -30,6 +35,9 @@ export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerPro
           if (prev <= 1) {
             setIsRunning(false);
             setIsCompleted(true);
+            // Save completed task to local storage
+            addCompletedTask({ name: task, duration });
+            playSuccess();
             return 0;
           }
           return prev - 1;
@@ -38,7 +46,19 @@ export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerPro
     }
     
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft]);
+  }, [isRunning, timeLeft, task, duration, addCompletedTask, playSuccess]);
+
+  // Play progress sounds at milestones
+  useEffect(() => {
+    if (progress >= 50 && !progressSoundsPlayed.fifty) {
+      playProgress();
+      setProgressSoundsPlayed(prev => ({ ...prev, fifty: true }));
+    }
+    if (progress >= 80 && !progressSoundsPlayed.eighty) {
+      playProgress();
+      setProgressSoundsPlayed(prev => ({ ...prev, eighty: true }));
+    }
+  }, [progress, progressSoundsPlayed, playProgress]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -46,11 +66,15 @@ export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerPro
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handleStart = () => setIsRunning(true);
+  const handleStart = () => {
+    setIsRunning(true);
+    playStart();
+  };
   const handlePause = () => setIsRunning(false);
   const handleStop = () => {
     setIsRunning(false);
     setTimeLeft(totalTime);
+    setProgressSoundsPlayed({ fifty: false, eighty: false });
   };
 
   const getEncouragementMessage = () => {
