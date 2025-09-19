@@ -301,8 +301,8 @@ const Landing = () => {
             <Button size="lg" className="text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-success" onClick={() => navigate('/auth')}>
               Start Free Today
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90" onClick={() => navigate('/app')}>
-              Try Demo First
+            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+              View Features
             </Button>
           </div>
 
