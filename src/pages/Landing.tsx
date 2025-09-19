@@ -195,7 +195,7 @@ const Landing = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-lg px-8 py-6 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10"
+              className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90"
               onClick={() => navigate('/app')}
             >
               Try Demo First
