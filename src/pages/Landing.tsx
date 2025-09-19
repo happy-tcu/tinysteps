@@ -78,104 +78,104 @@ const Landing = () => {
         <div className="text-center space-y-12">
           <p className="text-base text-muted-foreground font-medium">Trusted by productive people worldwide</p>
           
-          {/* Animated Logo Slider */}
-          <div className="overflow-hidden">
-            <div className="flex items-center gap-24 animate-[scroll_20s_linear_infinite] hover:pause">
+          {/* Logo Slider */}
+          <div className="w-full overflow-hidden bg-muted/20 py-8 rounded-lg">
+            <div className="flex items-center gap-16 animate-[scroll_30s_linear_infinite] hover:animate-none" style={{width: 'calc(200% + 4rem)'}}>
               {/* First set of logos */}
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={tcuLogo} 
                   alt="TCU" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={techcorpLogo} 
                   alt="TechCorp" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={adobeLogo} 
                   alt="Adobe" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={medicalCollegeLogo} 
                   alt="Medical College" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={innolabsLogo} 
                   alt="InnoLabs" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={openaiLogo} 
                   alt="OpenAI" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
 
               {/* Duplicate set for seamless loop */}
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={tcuLogo} 
                   alt="TCU" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={techcorpLogo} 
                   alt="TechCorp" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={adobeLogo} 
                   alt="Adobe" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={medicalCollegeLogo} 
                   alt="Medical College" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={innolabsLogo} 
                   alt="InnoLabs" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
-              <div className="flex items-center justify-center min-w-0">
+              <div className="flex items-center justify-center min-w-[120px]">
                 <img 
                   src={openaiLogo} 
                   alt="OpenAI" 
-                  className="h-16 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
             </div>
