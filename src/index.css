@@ -181,10 +181,7 @@
     @apply bg-background text-foreground font-sans;
   }
 
-  /* Ensure icons are always visible */
-  svg {
-    color: hsl(var(--foreground));
-  }
+  /* Icon colors inherit from context for proper contrast */
 }
 
 @layer components {
