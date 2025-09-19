@@ -133,7 +133,7 @@ const Landing = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="p-8 text-center border-2 hover:border-primary/30 transition-all shadow-soft hover:shadow-focus">
               <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Brain className="w-6 h-6 text-primary-foreground" />
+                <Brain className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">AI Task Breakdown</h3>
               <p className="text-muted-foreground text-sm">
