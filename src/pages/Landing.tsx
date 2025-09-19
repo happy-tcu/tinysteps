@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '@/components/ThemeToggle';
 import logo from '@/assets/logo.png';
 import intrusiveThoughts from '@/assets/intrusive-thoughts.svg';
+import tcuLogo from '@/assets/tcu-logo.png';
+import techcorpLogo from '@/assets/techcorp-logo.png';
+import adobeLogo from '@/assets/adobe-logo.png';
+import medicalCollegeLogo from '@/assets/medical-college-logo.png';
+import innolabsLogo from '@/assets/innolabs-logo.png';
+import openaiLogo from '@/assets/openai-logo.png';
 const Landing = () => {
   const navigate = useNavigate();
   return <div className="min-h-screen bg-background">
@@ -69,49 +75,63 @@ const Landing = () => {
         </div>
 
         {/* Social Proof */}
-        <div className="text-center space-y-8">
-          <p className="text-sm text-muted-foreground">Trusted by productive people worldwide</p>
+        <div className="text-center space-y-12">
+          <p className="text-base text-muted-foreground font-medium">Trusted by productive people worldwide</p>
           
           {/* Company/School Logos */}
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {/* Tech Company */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">TC</span>
-              </div>
-              <span className="text-sm font-medium">TechCorp</span>
+          <div className="flex flex-wrap justify-center items-center gap-16 lg:gap-20">
+            {/* TCU */}
+            <div className="flex items-center justify-center">
+              <img 
+                src={tcuLogo} 
+                alt="TCU" 
+                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+              />
             </div>
             
-            {/* University */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">SU</span>
-              </div>
-              <span className="text-sm font-medium">Stanford University</span>
+            {/* TechCorp */}
+            <div className="flex items-center justify-center">
+              <img 
+                src={techcorpLogo} 
+                alt="TechCorp" 
+                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+              />
             </div>
             
-            {/* Design Agency */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">DS</span>
-              </div>
-              <span className="text-sm font-medium">DesignStudio</span>
+            {/* Adobe */}
+            <div className="flex items-center justify-center">
+              <img 
+                src={adobeLogo} 
+                alt="Adobe" 
+                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+              />
             </div>
             
-            {/* Medical School */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">MC</span>
-              </div>
-              <span className="text-sm font-medium">MedCollege</span>
+            {/* Medical College */}
+            <div className="flex items-center justify-center">
+              <img 
+                src={medicalCollegeLogo} 
+                alt="Medical College" 
+                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+              />
             </div>
             
-            {/* Startup */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">IL</span>
-              </div>
-              <span className="text-sm font-medium">InnoLabs</span>
+            {/* InnoLabs */}
+            <div className="flex items-center justify-center">
+              <img 
+                src={innolabsLogo} 
+                alt="InnoLabs" 
+                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+              />
+            </div>
+            
+            {/* OpenAI */}
+            <div className="flex items-center justify-center">
+              <img 
+                src={openaiLogo} 
+                alt="OpenAI" 
+                className="h-12 w-auto opacity-60 hover:opacity-80 transition-opacity filter grayscale"
+              />
             </div>
           </div>
         </div>
