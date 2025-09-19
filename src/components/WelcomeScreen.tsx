@@ -56,15 +56,7 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-center min-h-[calc(100vh-200px)]">
           
           {/* Left Side - Content */}
-          <div className="relative space-y-8">
-            {/* Overlay illustration on the right */}
-            <div className="absolute -right-8 top-8 w-48 h-48 opacity-10 pointer-events-none hidden lg:block">
-              <img 
-                src={procrastinationIllustration} 
-                alt="" 
-                className="w-full h-full object-contain filter grayscale contrast-125 brightness-110"
-              />
-            </div>
+          <div className="space-y-8">
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
