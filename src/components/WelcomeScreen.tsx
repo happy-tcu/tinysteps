@@ -30,9 +30,9 @@ export const WelcomeScreen = ({
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Large gradient blob similar to Scale.com */}
-      <div className="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-purple-400 via-pink-300 to-blue-400 rounded-full blur-3xl opacity-80 animate-pulse"></div>
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-blue-300 via-purple-300 to-pink-400 rounded-full blur-2xl opacity-60 animate-pulse delay-1000"></div>
+      {/* Large abstract shape in white */}
+      <div className="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 w-[700px] h-[700px] bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
 
       {/* Clean Header */}
       <header className="border-b border-white/10 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60 relative z-20">
@@ -68,7 +68,7 @@ export const WelcomeScreen = ({
               <h1 className="text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
                 Breakthrough Focus
                 <br />
-                <span className="text-transparent bg-gradient-to-r from-purple-400 via-pink-300 to-blue-400 bg-clip-text">
+                <span className="text-white/80">
                   from Chaos to Clarity
                 </span>
               </h1>
@@ -86,7 +86,7 @@ export const WelcomeScreen = ({
                 </div>
                 {appData.userStats.currentStreak > 0 && (
                   <div>
-                    <div className="text-3xl font-bold text-purple-400">{appData.userStats.currentStreak}</div>
+                    <div className="text-3xl font-bold text-white">{appData.userStats.currentStreak}</div>
                     <div className="text-sm text-white/60">Day Streak</div>
                   </div>
                 )}
@@ -121,8 +121,8 @@ export const WelcomeScreen = ({
               <h3 className="text-xl font-bold text-white">What you get:</h3>
               <div className="grid grid-cols-1 gap-4">
                 <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Target className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Target className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <span className="text-white font-medium">Break tasks into tiny steps</span>
@@ -130,8 +130,8 @@ export const WelcomeScreen = ({
                   </div>
                 </div>
                 <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-400/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Clock className="w-5 h-5 text-blue-400" />
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Clock className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <span className="text-white font-medium">Gentle, adaptive timers</span>
@@ -140,8 +140,8 @@ export const WelcomeScreen = ({
                 </div>
                 {isAuthenticated && (
                   <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400/20 to-purple-400/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <BrainCircuit className="w-5 h-5 text-pink-400" />
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <BrainCircuit className="w-5 h-5 text-white" />
                     </div>
                     <div>
                       <span className="text-white font-medium">AI-powered suggestions</span>
@@ -170,7 +170,7 @@ export const WelcomeScreen = ({
 
               {/* Transformation Arrow */}
               <div className="flex justify-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                   <BrainCircuit className="w-6 h-6 text-white" />
                 </div>
               </div>
@@ -191,7 +191,7 @@ export const WelcomeScreen = ({
                 <div className="text-center space-y-2">
                   <div className="text-sm text-white/60">Your progress today</div>
                   <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                    <div className="h-full w-3/4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transition-all duration-500"></div>
+                    <div className="h-full w-3/4 bg-white rounded-full transition-all duration-500"></div>
                   </div>
                   <div className="text-xs text-white/60">3 of 4 tasks completed</div>
                 </div>
