@@ -228,40 +228,10 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
           {/* AI Suggestions Sidebar */}
           <div className="space-y-6">
             {/* AI Task Suggestions */}
-            {aiSettings.enableAiSuggestions && aiSettings.openaiApiKey ? (
-              <AITaskSuggestions
-                timeAvailable={selectedDuration}
-                onSelectTask={handleAiTaskSelect}
-              />
-            ) : (
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                      <Sparkles className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">AI Suggestions</CardTitle>
-                      <CardDescription className="text-sm">
-                        Get personalized task recommendations
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="text-center py-6">
-                    <Brain className="w-12 h-12 mx-auto text-muted-foreground mb-3" />
-                    <p className="text-sm text-muted-foreground mb-4">
-                      AI features are not configured yet
-                    </p>
-                    <Button variant="outline" size="sm" onClick={() => window.history.back()}>
-                      <Zap className="w-4 h-4 mr-2" />
-                      Setup AI in Settings
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+            <AITaskSuggestions
+              timeAvailable={selectedDuration}
+              onSelectTask={handleAiTaskSelect}
+            />
             
             {/* Feature Info */}
             <Card className="border-primary/20 bg-gradient-soft">
