@@ -69,8 +69,51 @@ const Landing = () => {
         </div>
 
         {/* Social Proof */}
-        <div className="text-center text-sm text-muted-foreground">
-          <p>Trusted by productive people worldwide</p>
+        <div className="text-center space-y-8">
+          <p className="text-sm text-muted-foreground">Trusted by productive people worldwide</p>
+          
+          {/* Company/School Logos */}
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+            {/* Tech Company */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">TC</span>
+              </div>
+              <span className="text-sm font-medium">TechCorp</span>
+            </div>
+            
+            {/* University */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">SU</span>
+              </div>
+              <span className="text-sm font-medium">Stanford University</span>
+            </div>
+            
+            {/* Design Agency */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">DS</span>
+              </div>
+              <span className="text-sm font-medium">DesignStudio</span>
+            </div>
+            
+            {/* Medical School */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">MC</span>
+              </div>
+              <span className="text-sm font-medium">MedCollege</span>
+            </div>
+            
+            {/* Startup */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">IL</span>
+              </div>
+              <span className="text-sm font-medium">InnoLabs</span>
+            </div>
+          </div>
         </div>
       </section>
 
