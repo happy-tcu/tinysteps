@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, Target, Trophy, Clock, Settings } from "lucide-react";
+import { Play, Target, Trophy, Clock, Settings, LogOut } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import { useAppData } from "@/hooks/useAppData";
+import { useAuth } from "@/hooks/useAuth";
 
 interface WelcomeScreenProps {
   onStartFocus: () => void;
@@ -12,6 +13,7 @@ interface WelcomeScreenProps {
 
 export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: WelcomeScreenProps) => {
   const { appData, getTodaysStats } = useAppData();
+  const { signOut, isAuthenticated } = useAuth();
   const todaysStats = getTodaysStats();
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
@@ -20,8 +22,8 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
       <div className="absolute top-10 left-10 w-32 h-32 bg-primary-soft rounded-full blur-3xl opacity-50"></div>
       <div className="absolute bottom-20 right-20 w-40 h-40 bg-secondary-soft rounded-full blur-3xl opacity-50"></div>
       
-      {/* Settings Button */}
-      <div className="absolute top-6 right-6">
+      {/* Top Bar with Settings and Logout */}
+      <div className="absolute top-6 right-6 flex gap-2">
         <Button
           variant="ghost"
           size="icon"
@@ -30,6 +32,17 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
         >
           <Settings className="w-5 h-5 text-foreground" />
         </Button>
+        
+        {isAuthenticated && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={signOut}
+            className="w-12 h-12 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card shadow-soft"
+          >
+            <LogOut className="w-5 h-5 text-foreground" />
+          </Button>
+        )}
       </div>
       
       <div className="relative z-10 max-w-2xl w-full text-center">
