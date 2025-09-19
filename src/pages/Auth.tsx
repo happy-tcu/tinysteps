@@ -108,7 +108,7 @@ const Auth = () => {
           <div className="grid grid-cols-2 gap-4 py-8">
             <div className="space-y-2">
               <div className="w-12 h-12 bg-primary-soft rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                <Brain className="w-6 h-6 text-primary" />
+                <Brain className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="font-semibold">AI Task Breakdown</h3>
               <p className="text-sm text-muted-foreground">
@@ -118,7 +118,7 @@ const Auth = () => {
             
             <div className="space-y-2">
               <div className="w-12 h-12 bg-secondary-soft rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                <Focus className="w-6 h-6 text-secondary" />
+                <Focus className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="font-semibold">Smart Focus Sessions</h3>
               <p className="text-sm text-muted-foreground">
@@ -128,7 +128,7 @@ const Auth = () => {
             
             <div className="space-y-2">
               <div className="w-12 h-12 bg-accent-soft rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                <Timer className="w-6 h-6 text-accent" />
+                <Timer className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="font-semibold">Adaptive Timers</h3>
               <p className="text-sm text-muted-foreground">
@@ -138,7 +138,7 @@ const Auth = () => {
             
             <div className="space-y-2">
               <div className="w-12 h-12 bg-warning-soft rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                <TrendingUp className="w-6 h-6 text-warning" />
+                <TrendingUp className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="font-semibold">Progress Analytics</h3>
               <p className="text-sm text-muted-foreground">

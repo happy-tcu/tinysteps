@@ -66,7 +66,7 @@ const AITaskBreakdown: React.FC<AITaskBreakdownProps> = ({ task, duration, onSel
       <Card className="shadow-soft">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Brain className="w-5 h-5 text-primary" />
+            <Brain className="w-5 h-5 text-foreground" />
             AI Task Breakdown
           </CardTitle>
           <CardDescription>
@@ -91,7 +91,7 @@ const AITaskBreakdown: React.FC<AITaskBreakdownProps> = ({ task, duration, onSel
       <Card className="shadow-soft border-primary/20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Brain className="w-5 h-5 text-primary" />
+            <Brain className="w-5 h-5 text-foreground" />
             AI Task Breakdown
           </CardTitle>
           <CardDescription>
@@ -108,7 +108,7 @@ const AITaskBreakdown: React.FC<AITaskBreakdownProps> = ({ task, duration, onSel
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="secondary">Step {step.priority}</Badge>
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Clock className="w-4 h-4" />
+                        <Clock className="w-4 h-4 text-muted-foreground" />
                         {step.estimatedMinutes} min
                       </div>
                     </div>
@@ -117,7 +117,7 @@ const AITaskBreakdown: React.FC<AITaskBreakdownProps> = ({ task, duration, onSel
                       <div className="space-y-1">
                         {step.focusTips.map((tip, tipIndex) => (
                           <div key={tipIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                            <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0 text-muted-foreground" />
                             <span>{tip}</span>
                           </div>
                         ))}

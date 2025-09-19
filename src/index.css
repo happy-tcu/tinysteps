@@ -124,6 +124,11 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+
+  /* Ensure icons are always visible */
+  svg {
+    color: hsl(var(--foreground));
+  }
 }
 
 @layer components {
@@ -168,6 +173,23 @@
   
   .transition-bounce {
     transition: var(--transition-bounce);
+  }
+
+  /* Icon visibility fixes */
+  .icon-visible {
+    color: hsl(var(--foreground));
+  }
+  
+  .icon-primary {
+    color: hsl(var(--primary));
+  }
+  
+  .icon-muted {
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .icon-on-primary {
+    color: hsl(var(--primary-foreground));
   }
 
   /* Minimal focus animations */

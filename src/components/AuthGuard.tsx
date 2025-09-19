@@ -45,7 +45,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, fallback }) => {
           <CardContent className="space-y-4">
             <div className="grid gap-3">
               <div className="flex items-center gap-3 p-3 bg-primary-soft rounded-lg">
-                <Sparkles className="w-5 h-5 text-primary flex-shrink-0" />
+                <Sparkles className="w-5 h-5 text-foreground flex-shrink-0" />
                 <div>
                   <p className="font-medium text-sm">AI Task Breakdown</p>
                   <p className="text-xs text-muted-foreground">Break complex tasks into manageable steps</p>
@@ -53,7 +53,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, fallback }) => {
               </div>
               
               <div className="flex items-center gap-3 p-3 bg-secondary-soft rounded-lg">
-                <Shield className="w-5 h-5 text-secondary flex-shrink-0" />
+                <Shield className="w-5 h-5 text-foreground flex-shrink-0" />
                 <div>
                   <p className="font-medium text-sm">Cloud Sync</p>
                   <p className="text-xs text-muted-foreground">Access your data from any device</p>
@@ -61,7 +61,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, fallback }) => {
               </div>
               
               <div className="flex items-center gap-3 p-3 bg-accent-soft rounded-lg">
-                <Users className="w-5 h-5 text-accent flex-shrink-0" />
+                <Users className="w-5 h-5 text-foreground flex-shrink-0" />
                 <div>
                   <p className="font-medium text-sm">Progress Analytics</p>
                   <p className="text-xs text-muted-foreground">Track your focus journey over time</p>

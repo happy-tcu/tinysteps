@@ -28,7 +28,7 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
           onClick={onOpenSettings}
           className="w-12 h-12 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card shadow-soft"
         >
-          <Settings className="w-5 h-5" />
+          <Settings className="w-5 h-5 text-foreground" />
         </Button>
       </div>
       
@@ -72,19 +72,19 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
         {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           <Card className="p-4 bg-card/80 backdrop-blur-sm shadow-soft hover:shadow-focus transition-smooth">
-            <Target className="w-8 h-8 text-primary mb-2 mx-auto" />
+            <Target className="w-8 h-8 text-foreground mb-2 mx-auto" />
             <h3 className="font-semibold text-sm mb-1">Focus Timer</h3>
             <p className="text-xs text-muted-foreground">Gentle Pomodoro sessions</p>
           </Card>
           
           <Card className="p-4 bg-card/80 backdrop-blur-sm shadow-soft hover:shadow-focus transition-smooth">
-            <Trophy className="w-8 h-8 text-secondary mb-2 mx-auto" />
+            <Trophy className="w-8 h-8 text-foreground mb-2 mx-auto" />
             <h3 className="font-semibold text-sm mb-1">Progress Tracking</h3>
             <p className="text-xs text-muted-foreground">Celebrate your streaks</p>
           </Card>
           
           <Card className="p-4 bg-card/80 backdrop-blur-sm shadow-soft hover:shadow-focus transition-smooth">
-            <Clock className="w-8 h-8 text-accent mb-2 mx-auto" />
+            <Clock className="w-8 h-8 text-foreground mb-2 mx-auto" />
             <h3 className="font-semibold text-sm mb-1">Break Reminders</h3>
             <p className="text-xs text-muted-foreground">Gentle rest periods</p>
           </Card>
@@ -96,7 +96,7 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
             onClick={onStartFocus}
             className="w-full h-14 text-lg font-semibold bg-gradient-primary hover:shadow-focus transition-smooth group"
           >
-            <Play className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+            <Play className="w-6 h-6 mr-3 text-white group-hover:scale-110 transition-transform" />
             Start Your Focus Session
           </Button>
           
@@ -105,7 +105,7 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
             onClick={onViewProgress}
             className="w-full h-12 font-medium border-primary/20 hover:bg-primary-soft hover:border-primary/40 transition-smooth"
           >
-            <Trophy className="w-5 h-5 mr-2" />
+            <Trophy className="w-5 h-5 mr-2 text-foreground" />
             View Your Progress
           </Button>
         </div>
