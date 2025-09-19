@@ -16,117 +16,87 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
   const { signOut, isAuthenticated } = useAuth();
   const todaysStats = getTodaysStats();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-gradient-soft opacity-30"></div>
-      <div className="absolute top-10 left-10 w-32 h-32 bg-primary-soft rounded-full blur-3xl opacity-50"></div>
-      <div className="absolute bottom-20 right-20 w-40 h-40 bg-secondary-soft rounded-full blur-3xl opacity-50"></div>
-      
-      {/* Top Bar with Settings and Logout */}
-      <div className="absolute top-6 right-6 flex gap-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onOpenSettings}
-          className="w-12 h-12 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card shadow-soft"
-        >
-          <Settings className="w-5 h-5 text-foreground" />
-        </Button>
-        
-        {isAuthenticated && (
+    <div className="min-h-screen flex flex-col p-6 max-w-2xl mx-auto">
+      {/* Simple Top Bar */}
+      <div className="flex justify-between items-center mb-12">
+        <h1 className="text-2xl font-bold">TinySteps</h1>
+        <div className="flex gap-3">
           <Button
             variant="ghost"
             size="icon"
-            onClick={signOut}
-            className="w-12 h-12 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card shadow-soft"
+            onClick={onOpenSettings}
+            className="w-10 h-10"
           >
-            <LogOut className="w-5 h-5 text-foreground" />
+            <Settings className="w-5 h-5 text-foreground" />
           </Button>
-        )}
-      </div>
-      
-      <div className="relative z-10 max-w-2xl w-full text-center">
-        {/* Hero Section */}
-        <div className="mb-12 space-y-6">
-          <img 
-            src={heroImage} 
-            alt="TinySteps - Small steps, big progress" 
-            className="w-full h-48 object-cover rounded-2xl shadow-soft mb-8"
-          />
           
-          <h1 className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
-            TinySteps
-          </h1>
-          
-          <p className="text-xl text-muted-foreground mb-2">
-            Small steps, big progress
-          </p>
-          
-          <p className="text-lg text-foreground/80 max-w-lg mx-auto">
-            Break down overwhelming tasks into tiny, manageable steps. 
-            Stay focused with gentle timers and celebrate every victory.
-          </p>
-          
-          {/* Quick Stats */}
-          {appData.userStats.totalTasks > 0 && (
-            <div className="flex justify-center gap-6 mt-6 text-sm">
-              <div className="text-center">
-                <p className="font-bold text-primary">{todaysStats.sessionsToday}</p>
-                <p className="text-muted-foreground">Today's Sessions</p>
-              </div>
-              <div className="text-center">
-                <p className="font-bold text-secondary">{appData.userStats.currentStreak}</p>
-                <p className="text-muted-foreground">Day Streak</p>
-              </div>
-            </div>
+          {isAuthenticated && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={signOut}
+              className="w-10 h-10"
+            >
+              <LogOut className="w-5 h-5 text-foreground" />
+            </Button>
           )}
         </div>
+      </div>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <Card className="p-4 bg-card/80 backdrop-blur-sm shadow-soft hover:shadow-focus transition-smooth">
-            <Target className="w-8 h-8 text-foreground mb-2 mx-auto" />
-            <h3 className="font-semibold text-sm mb-1">Focus Timer</h3>
-            <p className="text-xs text-muted-foreground">Gentle Pomodoro sessions</p>
-          </Card>
-          
-          <Card className="p-4 bg-card/80 backdrop-blur-sm shadow-soft hover:shadow-focus transition-smooth">
-            <Trophy className="w-8 h-8 text-foreground mb-2 mx-auto" />
-            <h3 className="font-semibold text-sm mb-1">Progress Tracking</h3>
-            <p className="text-xs text-muted-foreground">Celebrate your streaks</p>
-          </Card>
-          
-          <Card className="p-4 bg-card/80 backdrop-blur-sm shadow-soft hover:shadow-focus transition-smooth">
-            <Clock className="w-8 h-8 text-foreground mb-2 mx-auto" />
-            <h3 className="font-semibold text-sm mb-1">Break Reminders</h3>
-            <p className="text-xs text-muted-foreground">Gentle rest periods</p>
-          </Card>
+      {/* Main Content - Single Column */}
+      <div className="flex-1 flex flex-col justify-center space-y-8">
+        
+        {/* Simple Progress Display */}
+        {appData.userStats.totalTasks > 0 && (
+          <div className="text-center space-y-2 pb-8 border-b">
+            <div className="text-3xl font-bold">{todaysStats.sessionsToday}</div>
+            <div className="text-muted-foreground">sessions today</div>
+            {appData.userStats.currentStreak > 0 && (
+              <div className="text-sm text-muted-foreground">
+                {appData.userStats.currentStreak} day streak 🔥
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Main Message */}
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold">Ready to focus?</h2>
+          <p className="text-lg text-muted-foreground max-w-md mx-auto">
+            Take one small step. Break it down. Stay focused.
+          </p>
         </div>
 
-        {/* Call to Action */}
+        {/* Primary Action - Big, Obvious */}
         <div className="space-y-4">
           <Button 
             onClick={onStartFocus}
-            className="w-full h-14 text-lg font-semibold bg-gradient-primary hover:shadow-focus transition-smooth group"
+            className="w-full h-16 text-xl font-semibold bg-foreground text-background hover:bg-foreground/90"
           >
-            <Play className="w-6 h-6 mr-3 text-white group-hover:scale-110 transition-transform" />
-            Start Your Focus Session
+            Start Focus Session
           </Button>
           
+          {/* Secondary Action - Smaller, Less Prominent */}
           <Button 
             variant="outline" 
             onClick={onViewProgress}
-            className="w-full h-12 font-medium border-primary/20 hover:bg-primary-soft hover:border-primary/40 transition-smooth"
+            className="w-full h-12 text-base"
           >
-            <Trophy className="w-5 h-5 mr-2 text-foreground" />
-            View Your Progress
+            View Progress
           </Button>
         </div>
 
-        {/* Encouraging message */}
-        <p className="mt-8 text-sm text-muted-foreground gentle-pulse">
-          ✨ Ready to take your first tiny step today?
-        </p>
+        {/* Simple Feature List - No Cards */}
+        <div className="text-center space-y-3 pt-8 border-t">
+          <div className="text-sm text-muted-foreground">What you get:</div>
+          <div className="space-y-2 text-sm">
+            <div>• Break tasks into tiny steps</div>
+            <div>• Gentle focus timers</div>
+            <div>• Track your progress</div>
+            {isAuthenticated && <div>• AI-powered task suggestions</div>}
+          </div>
+        </div>
+
       </div>
     </div>
   );
