@@ -102,7 +102,7 @@ const Landing = () => {
                 <img 
                   src={adobeLogo} 
                   alt="Adobe" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
+                  className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
                 />
               </div>
               
