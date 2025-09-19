@@ -50,17 +50,17 @@ const Landing = () => {
             className="text-lg px-8 py-6 bg-gradient-primary text-primary-foreground hover:opacity-90 shadow-focus"
             onClick={() => navigate('/auth')}
           >
-            <Play className="w-5 h-5 mr-2" />
+            <Play className="mr-2 text-current" />
             Start Focusing Now
           </Button>
           <Button 
             variant="outline" 
             size="lg" 
-            className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft"
+            className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground"
             onClick={() => navigate('/app')}
           >
             Try Demo
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <ArrowRight className="ml-2 text-current" />
           </Button>
         </div>
 
