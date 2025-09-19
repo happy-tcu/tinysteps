@@ -63,6 +63,20 @@ export const WelcomeScreen = ({
           
           {/* Left Side - Content */}
           <div className="space-y-10 max-w-2xl">
+            {/* Video Section */}
+            <div className="mb-8">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="w-full max-w-md mx-auto rounded-lg shadow-lg"
+              >
+                <source src="/assets/intro-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
             {/* Main Heading */}
             <div className="space-y-8">
               <h1 className="text-6xl lg:text-7xl font-bold text-black leading-[1.1] tracking-tight">
