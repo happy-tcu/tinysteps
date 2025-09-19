@@ -46,80 +46,99 @@ export const WelcomeScreen = ({ onStartFocus, onViewProgress, onOpenSettings }: 
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-center space-y-8">
-        
-        {/* Progress Display */}
+      {/* Hero Section */}
+      <div className="text-center space-y-6 mb-12">
+        <h2 className="text-5xl font-bold text-foreground leading-tight">
+          Ready to focus?
+        </h2>
+        <p className="text-xl text-muted-foreground max-w-lg mx-auto leading-relaxed">
+          Take one small step. Break it down. Stay focused.
+        </p>
+      </div>
+
+      {/* Stats and Action Grid */}
+      <div className="grid gap-6 mb-8">
+        {/* Progress Card - if user has data */}
         {appData.userStats.totalTasks > 0 && (
-          <Card className="p-6 text-center bg-gradient-soft border-primary/20 shadow-soft">
-            <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-              {todaysStats.sessionsToday}
-            </div>
-            <div className="text-muted-foreground text-lg mb-2">sessions today</div>
-            {appData.userStats.currentStreak > 0 && (
-              <div className="text-sm text-warning font-medium">
-                {appData.userStats.currentStreak} day streak 🔥
+          <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/5 border-primary/20 shadow-elegant">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-1">
+                  {todaysStats.sessionsToday}
+                </div>
+                <div className="text-muted-foreground">sessions today</div>
               </div>
-            )}
+              {appData.userStats.currentStreak > 0 && (
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-warning mb-1">
+                    {appData.userStats.currentStreak}
+                  </div>
+                  <div className="text-sm text-muted-foreground">day streak 🔥</div>
+                </div>
+              )}
+            </div>
           </Card>
         )}
 
-        {/* Welcome Message */}
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl font-bold text-foreground">Ready to focus?</h2>
-          <p className="text-xl text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Take one small step. Break it down. Stay focused.
-          </p>
-        </div>
+        {/* Main Action Card */}
+        <Card className="p-8 bg-gradient-to-br from-background to-accent/5 border-0 shadow-focus hover:shadow-success transition-all duration-300">
+          <div className="text-center space-y-6">
+            <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto shadow-glow">
+              <BrainCircuit className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Start Your Session</h3>
+              <p className="text-muted-foreground">Break down tasks, stay focused, get things done</p>
+            </div>
+            <Button 
+              onClick={onStartFocus}
+              className="w-full h-14 text-lg font-semibold bg-foreground text-background hover:bg-foreground/90 shadow-focus hover:shadow-success transition-all"
+            >
+              Start Focus Session
+            </Button>
+          </div>
+        </Card>
+      </div>
 
-        {/* Action Buttons */}
-        <div className="space-y-4">
-          <Button 
-            onClick={onStartFocus}
-            className="w-full h-16 text-xl font-semibold bg-foreground text-background hover:bg-foreground/90 shadow-focus"
-          >
-            <BrainCircuit className="mr-3 w-6 h-6" />
-            Start Focus Session
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            onClick={onViewProgress}
-            className="w-full h-12 text-base border-primary/20 hover:bg-primary-soft text-foreground"
-          >
-            <Trophy className="mr-2 w-5 h-5" />
-            View Progress
-          </Button>
-        </div>
+      {/* Bottom Row - Progress and Features */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Progress Button */}
+        <Card className="p-6 bg-gradient-soft border-secondary/20 hover:border-secondary/40 transition-all cursor-pointer group" onClick={onViewProgress}>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Trophy className="w-6 h-6 text-secondary-foreground" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-semibold mb-1">View Progress</h4>
+              <p className="text-sm text-muted-foreground">Track your achievements</p>
+            </div>
+          </div>
+        </Card>
 
-        {/* Features List */}
-        <Card className="p-6 bg-gradient-soft border-0 shadow-soft">
-          <div className="text-center space-y-4">
-            <div className="text-sm font-medium text-primary">What you get:</div>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="flex items-center gap-2">
+        {/* Features Card */}
+        <Card className="p-6 bg-gradient-soft border-accent/20">
+          <div className="space-y-4">
+            <h4 className="font-semibold text-accent">What you get:</h4>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
                 <Target className="w-4 h-4 text-primary" />
-                <span>Break tasks into tiny steps</span>
+                <span className="text-sm">Break tasks into tiny steps</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <Clock className="w-4 h-4 text-secondary" />
-                <span>Gentle focus timers</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Trophy className="w-4 h-4 text-accent" />
-                <span>Track your progress</span>
+                <span className="text-sm">Gentle focus timers</span>
               </div>
               {isAuthenticated && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <BrainCircuit className="w-4 h-4 text-warning" />
-                  <span>AI-powered suggestions</span>
+                  <span className="text-sm">AI-powered suggestions</span>
                 </div>
               )}
             </div>
           </div>
         </Card>
-
       </div>
+
     </div>
   );
 };
