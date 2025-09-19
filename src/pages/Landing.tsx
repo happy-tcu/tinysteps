@@ -18,10 +18,10 @@ const Landing = () => {
           </div>
           <div className="flex gap-2 items-center">
             <ThemeToggle />
-            <Button variant="ghost" onClick={() => navigate('/auth')}>
+            <Button variant="ghost" onClick={() => navigate('/auth?mode=signin')}>
               Sign In
             </Button>
-            <Button onClick={() => navigate('/auth')} className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button onClick={() => navigate('/auth?mode=signup')} className="bg-primary text-primary-foreground hover:bg-primary/90">
               Get Started
             </Button>
           </div>
