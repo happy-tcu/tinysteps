@@ -30,18 +30,18 @@ const Landing = () => {
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-20 text-center bg-gradient-background">
         <Badge variant="outline" className="mb-6 px-4 py-2 border-primary/20 text-primary bg-primary-soft">
-          Designed for ADHD minds
+          Finally, productivity that works
         </Badge>
         
         <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-          Focus made
+          Stop drowning in
           <br />
-          <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
+          <span className="bg-gradient-primary bg-clip-text text-transparent">endless tasks</span>
         </h1>
         
         <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-          Break overwhelming tasks into tiny steps. Stay focused with AI-powered guidance. 
-          Built specifically for minds that work differently.
+          Turn overwhelming projects into tiny, manageable steps. Stay focused with AI-powered guidance. 
+          Built for people who struggle with traditional productivity apps.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -66,7 +66,7 @@ const Landing = () => {
 
         {/* Social Proof */}
         <div className="text-center text-sm text-muted-foreground">
-          <p>Trusted by people with ADHD worldwide</p>
+          <p>Trusted by productive people worldwide</p>
         </div>
       </section>
 
@@ -76,20 +76,20 @@ const Landing = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-6">
-                ADHD minds deserve better tools
+                Traditional productivity apps fail you
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-start gap-3">
                   <Lightning className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <p>Traditional productivity apps overwhelm with too many features</p>
+                  <p>Overwhelming you with endless features and complexity</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <BrainCircuit className="w-5 h-5 text-warning mt-0.5 flex-shrink-0" />
-                  <p>Complex interfaces create decision fatigue</p>
+                  <p>Making simple tasks feel impossible to start</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Skull className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <p>No consideration for ADHD challenges</p>
+                  <p>Ignoring how real brains actually work</p>
                 </div>
               </div>
             </div>
@@ -104,15 +104,15 @@ const Landing = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <p>AI breaks down overwhelming tasks</p>
+                  <p>AI breaks down any project into bite-sized actions</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <p>Clean, distraction-free interface</p>
+                  <p>Beautiful, distraction-free interface</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Shield className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
-                  <p>Built by someone with ADHD</p>
+                  <p>Built by someone who gets overwhelmed too</p>
                 </div>
               </div>
             </div>
@@ -124,9 +124,9 @@ const Landing = () => {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Simple features that work</h2>
+            <h2 className="text-4xl font-bold mb-4">Features that actually help</h2>
             <p className="text-xl text-muted-foreground">
-              Everything you need, nothing you don't
+              Powerful but simple. Everything you need, nothing you don't.
             </p>
           </div>
 
@@ -214,7 +214,7 @@ const Landing = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-2xl font-bold mb-4 md:mb-0">TinySteps</div>
             <div className="text-sm text-muted-foreground">
-              Made with ❤️ for ADHD minds
+              Made with ❤️ for overwhelmed minds
             </div>
           </div>
         </div>
