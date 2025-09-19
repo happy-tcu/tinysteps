@@ -1,18 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, Target, Trophy, Clock, Settings, LogOut, BrainCircuit, ArrowRight } from "lucide-react";
+import { Play, Target, Trophy, Clock, Settings, LogOut, BrainCircuit } from "lucide-react";
 import logo from "@/assets/logo.png";
 import adhdOverwhelm from "@/assets/adhd-overwhelm.png";
 import adhdFocused from "@/assets/adhd-focused.png";
 import { useAppData } from "@/hooks/useAppData";
 import { useAuth } from "@/hooks/useAuth";
-
 interface WelcomeScreenProps {
   onStartFocus: () => void;
   onViewProgress: () => void;
   onOpenSettings: () => void;
 }
-
 export const WelcomeScreen = ({
   onStartFocus,
   onViewProgress,
@@ -27,198 +25,149 @@ export const WelcomeScreen = ({
     isAuthenticated
   } = useAuth();
   const todaysStats = getTodaysStats();
-
-  return (
-    <div className="min-h-screen bg-white text-black relative overflow-hidden">
-      {/* Large abstract shape in black */}
-      <div className="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 w-[700px] h-[700px] bg-black/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-black/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-
+  return <div className="min-h-screen bg-background">
       {/* Clean Header */}
-      <header className="border-b border-black/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 relative z-20">
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <img src={logo} alt="TinySteps" className="h-8 w-8" />
-            <span className="text-2xl font-bold text-black">TinySteps</span>
+            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
           </div>
           <div className="flex gap-2">
-            <Button variant="ghost" size="sm" onClick={onOpenSettings} className="gap-2 text-black/80 hover:text-black hover:bg-black/10 border-none">
+            <Button variant="ghost" size="sm" onClick={onOpenSettings} className="gap-2">
               <Settings className="w-4 h-4" />
               Settings
             </Button>
             
-            {isAuthenticated && (
-              <Button variant="ghost" size="sm" onClick={signOut} className="gap-2 text-black/60 hover:text-red-600 hover:bg-red-50 border-none">
+            {isAuthenticated && <Button variant="ghost" size="sm" onClick={signOut} className="gap-2 text-muted-foreground hover:text-destructive">
                 <LogOut className="w-4 h-4" />
                 Sign Out
-              </Button>
-            )}
+              </Button>}
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <main className="container mx-auto px-6 py-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           
           {/* Left Side - Content */}
-          <div className="space-y-10 max-w-2xl">
+          <div className="space-y-8">
             {/* Main Heading */}
-            <div className="space-y-8">
-              <h1 className="text-6xl lg:text-7xl font-bold text-black leading-[1.1] tracking-tight">
-                Breakthrough Focus
+            <div className="space-y-6">
+              <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                Focus made
                 <br />
-                <span className="text-black/60">
-                  from Chaos to Clarity
-                </span>
+                <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
               </h1>
-              <p className="text-xl lg:text-2xl text-black/70 leading-relaxed">
-                TinySteps delivers proven focus techniques and AI-powered task breakdown to help minds that think differently achieve more.
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
+                Break down overwhelming tasks into tiny, manageable steps. AI-powered productivity for minds that think differently.
               </p>
             </div>
 
             {/* Stats Row */}
-            {appData.userStats.totalTasks > 0 && (
-              <div className="flex gap-8 py-6 border-y border-black/10">
+            {appData.userStats.totalTasks > 0 && <div className="flex gap-8 py-6 border-y border-border/50">
                 <div>
-                  <div className="text-3xl font-bold text-black">{todaysStats.sessionsToday}</div>
-                  <div className="text-sm text-black/60">Sessions Today</div>
+                  <div className="text-3xl font-bold text-foreground">{todaysStats.sessionsToday}</div>
+                  <div className="text-sm text-muted-foreground">Sessions Today</div>
                 </div>
-                {appData.userStats.currentStreak > 0 && (
-                  <div>
-                    <div className="text-3xl font-bold text-black">{appData.userStats.currentStreak}</div>
-                    <div className="text-sm text-black/60">Day Streak</div>
-                  </div>
-                )}
-              </div>
-            )}
+                {appData.userStats.currentStreak > 0 && <div>
+                    <div className="text-3xl font-bold text-warning">{appData.userStats.currentStreak}</div>
+                    <div className="text-sm text-muted-foreground">Day Streak</div>
+                  </div>}
+              </div>}
 
-            {/* Action Buttons */}
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={onStartFocus} 
-                  size="lg" 
-                  className="group h-16 px-10 text-lg font-semibold bg-black text-white hover:bg-black/90 transition-all duration-300 hover:scale-[1.02] border-none rounded-lg"
-                >
-                  Start Focus Session
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-                
-                <Button 
-                  onClick={onViewProgress} 
-                  size="lg" 
-                  className="h-14 px-8 text-base font-medium bg-transparent border-2 border-black/20 text-black hover:bg-black/10 hover:border-black/40 transition-all duration-300 hover:scale-[1.02] rounded-lg"
-                >
-                  View Progress
-                  <Trophy className="w-5 h-5 ml-2" />
-                </Button>
-              </div>
+            {/* Action Button */}
+            <div className="space-y-4">
+              <Button onClick={onStartFocus} size="lg" className="h-14 px-8 text-lg bg-foreground text-background hover:bg-foreground/90">
+                <BrainCircuit className="w-5 h-5 mr-2" />
+                Start Focus Session
+              </Button>
+              
+              <Button variant="outline" size="lg" onClick={onViewProgress} className="h-12 px-8 ml-4">
+                <Trophy className="w-4 h-4 mr-2" />
+                View Progress
+              </Button>
             </div>
 
-            {/* Enhanced Feature List with Video */}
-            <div className="space-y-6 pt-6">
-              <div className="flex flex-col lg:flex-row gap-8 items-start">
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-black mb-6">What you get:</h3>
-                  <div className="grid grid-cols-1 gap-4">
-                    <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
-                      <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Target className="w-5 h-5 text-black" />
-                      </div>
-                      <div>
-                        <span className="text-black font-medium">Break tasks into tiny steps</span>
-                        <p className="text-sm text-black/60">Transform overwhelming projects into manageable actions</p>
-                      </div>
-                    </div>
-                    <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
-                      <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Clock className="w-5 h-5 text-black" />
-                      </div>
-                      <div>
-                        <span className="text-black font-medium">Gentle, adaptive timers</span>
-                        <p className="text-sm text-black/60">Work at your own pace with flexible focus sessions</p>
-                      </div>
-                    </div>
-                    {isAuthenticated && (
-                      <div className="group flex items-center gap-4 p-3 rounded-lg hover:bg-black/5 transition-all duration-300">
-                        <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <BrainCircuit className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <span className="text-black font-medium">AI-powered suggestions</span>
-                          <p className="text-sm text-black/60">Smart recommendations tailored to your workflow</p>
-                        </div>
-                      </div>
-                    )}
+            {/* Feature List */}
+            <div className="space-y-4 pt-4">
+              <h3 className="text-lg font-semibold text-foreground">What you get:</h3>
+              <div className="grid grid-cols-1 gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                    
                   </div>
+                  <span className="text-foreground">Break tasks into tiny steps</span>
                 </div>
-                
-                {/* Video Section */}
-                <div className="lg:w-80">
-                  <video 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline
-                    className="w-full rounded-lg shadow-lg"
-                  >
-                    <source src="/assets/intro-video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center">
+                    <Clock className="w-3 h-3 text-secondary" />
+                  </div>
+                  <span className="text-foreground">Gentle, adaptive timers</span>
                 </div>
+                {isAuthenticated && <div className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-warning/10 flex items-center justify-center">
+                      <BrainCircuit className="w-3 h-3 text-warning" />
+                    </div>
+                    <span className="text-foreground">AI-powered suggestions</span>
+                  </div>}
               </div>
             </div>
           </div>
 
-          {/* Right Side - Visual Elements */}
+          {/* Right Side - ADHD Illustrations */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="space-y-6 w-full max-w-md relative z-10">
+            <div className="space-y-6 w-full max-w-md">
               
               {/* Before State - Overwhelm */}
-              <Card className="p-6 bg-black/5 backdrop-blur-sm border border-black/10 shadow-lg">
+              <Card className="p-6 bg-gradient-to-br from-background to-destructive/5 border border-border/50 shadow-lg">
                 <div className="flex items-center gap-4">
                   <img src={adhdOverwhelm} alt="ADHD Overwhelm" className="w-20 h-20 rounded-xl object-cover" />
                   <div>
-                    <h3 className="text-lg font-semibold text-black mb-2">Before TinySteps</h3>
-                    <p className="text-sm text-black/60">Scattered thoughts, overwhelming tasks, endless distractions</p>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">Before TinySteps</h3>
+                    <p className="text-sm text-muted-foreground">Scattered thoughts, overwhelming tasks, endless distractions</p>
                   </div>
                 </div>
               </Card>
 
               {/* Transformation Arrow */}
               <div className="flex justify-center">
-                <div className="w-12 h-12 bg-black/20 rounded-full flex items-center justify-center">
-                  <BrainCircuit className="w-6 h-6 text-black" />
+                <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
+                  <BrainCircuit className="w-4 h-4 text-white" />
                 </div>
               </div>
 
               {/* After State - Focused */}
-              <Card className="p-6 bg-black/5 backdrop-blur-sm border border-black/10 shadow-lg">
+              <Card className="p-6 bg-gradient-to-br from-background to-success/5 border border-border/50 shadow-lg">
                 <div className="flex items-center gap-4">
                   <img src={adhdFocused} alt="ADHD Focused" className="w-20 h-20 rounded-xl object-cover" />
                   <div>
-                    <h3 className="text-lg font-semibold text-black mb-2">With TinySteps</h3>
-                    <p className="text-sm text-black/60">Clear focus, manageable steps, productive flow</p>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">With TinySteps</h3>
+                    <p className="text-sm text-muted-foreground">Clear focus, manageable steps, productive flow</p>
                   </div>
                 </div>
               </Card>
 
               {/* Stats Visual */}
-              <div className="bg-black/5 backdrop-blur-sm rounded-xl p-4 border border-black/10">
+              <div className="bg-gradient-soft rounded-xl p-4 border border-border/30">
                 <div className="text-center space-y-2">
-                  <div className="text-sm text-black/60">Your progress today</div>
-                  <div className="h-2 bg-black/20 rounded-full overflow-hidden">
-                    <div className="h-full w-3/4 bg-black rounded-full transition-all duration-500"></div>
+                  
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-full w-3/4 bg-gradient-primary rounded-full transition-all duration-500"></div>
                   </div>
-                  <div className="text-xs text-black/60">3 of 4 tasks completed</div>
+                  <div className="text-xs text-muted-foreground">3 of 4 tasks completed</div>
                 </div>
               </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-2 -left-2 w-6 h-6 bg-primary/20 rounded-full blur-sm"></div>
+              <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-secondary/20 rounded-full blur-sm"></div>
+              <div className="absolute top-1/3 -right-3 w-3 h-3 bg-accent/20 rounded-full blur-sm"></div>
             </div>
           </div>
 
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
