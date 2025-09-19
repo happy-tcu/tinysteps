@@ -48,11 +48,11 @@ export const WelcomeScreen = ({
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+      <main className="container mx-auto px-6 py-12">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-16 items-start min-h-[80vh]">
           
           {/* Left Side - Content */}
-          <div className="space-y-8">
+          <div className="space-y-10 flex flex-col justify-center">
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
@@ -60,9 +60,22 @@ export const WelcomeScreen = ({
                 <br />
                 <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 Break down overwhelming tasks into tiny, manageable steps. AI-powered productivity for minds that think differently.
               </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button onClick={onStartFocus} size="lg" className="h-14 px-8 text-lg bg-foreground text-background hover:bg-foreground/90">
+                <BrainCircuit className="w-5 h-5 mr-2" />
+                Start Focus Session
+              </Button>
+              
+              <Button variant="outline" size="lg" onClick={onViewProgress} className="h-14 px-8">
+                <Trophy className="w-4 h-4 mr-2" />
+                View Progress
+              </Button>
             </div>
 
             {/* Stats Row */}
@@ -77,21 +90,8 @@ export const WelcomeScreen = ({
                   </div>}
               </div>}
 
-            {/* Action Button */}
-            <div className="space-y-4">
-              <Button onClick={onStartFocus} size="lg" className="h-14 px-8 text-lg bg-foreground text-background hover:bg-foreground/90">
-                <BrainCircuit className="w-5 h-5 mr-2" />
-                Start Focus Session
-              </Button>
-              
-              <Button variant="outline" size="lg" onClick={onViewProgress} className="h-12 px-8 ml-4">
-                <Trophy className="w-4 h-4 mr-2" />
-                View Progress
-              </Button>
-            </div>
-
             {/* Feature List */}
-            <div className="space-y-4 pt-4">
+            <div className="space-y-4">
               <h3 className="text-lg font-semibold text-foreground">What you get:</h3>
               <div className="grid grid-cols-1 gap-3">
                 <div className="flex items-center gap-3">
