@@ -6,12 +6,9 @@ import { Zap, Timer, Focus, Sparkles, Rocket, ChevronRight, Shield, CheckCircle2
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '@/components/ThemeToggle';
 import logo from '@/assets/logo.png';
-
 const Landing = () => {
   const navigate = useNavigate();
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -49,20 +46,11 @@ const Landing = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Button 
-            size="lg" 
-            className="text-lg px-8 py-6 bg-foreground text-primary-foreground hover:bg-foreground/90 shadow-focus"
-            onClick={() => navigate('/auth')}
-          >
+          <Button size="lg" className="text-lg px-8 py-6 bg-foreground text-primary-foreground hover:bg-foreground/90 shadow-focus" onClick={() => navigate('/auth')}>
             <Rocket className="mr-2 text-current" />
             Start Focusing Now
           </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground"
-            onClick={() => navigate('/app')}
-          >
+          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => navigate('/app')}>
             Try Demo
             <ChevronRight className="ml-2 text-current" />
           </Button>
@@ -189,19 +177,10 @@ const Landing = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-success"
-              onClick={() => navigate('/auth')}
-            >
+            <Button size="lg" className="text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-success" onClick={() => navigate('/auth')}>
               Start Free Today
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90"
-              onClick={() => navigate('/app')}
-            >
+            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90" onClick={() => navigate('/app')}>
               Try Demo First
             </Button>
           </div>
@@ -225,22 +204,8 @@ const Landing = () => {
                 The productivity app that actually works. Break down any project into tiny, manageable steps and get things done without the overwhelm.
               </p>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Help Center</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Terms</a></li>
-              </ul>
-            </div>
+            
+            
           </div>
           <div className="pt-8 border-t flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-muted-foreground mb-4 md:mb-0">
@@ -252,8 +217,6 @@ const Landing = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Landing;
