@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Zap, Timer, Focus, Sparkles, Rocket, ChevronRight, Shield, CheckCircle2 } from 'lucide-react';
+import { Zap, Timer, Focus, Sparkles, Rocket, ChevronRight, Shield, CheckCircle2, Skull, Zap as Lightning, BrainCircuit } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -80,15 +80,15 @@ const Landing = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"></div>
+                  <Lightning className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
                   <p>Traditional productivity apps overwhelm with too many features</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"></div>
+                  <BrainCircuit className="w-5 h-5 text-warning mt-0.5 flex-shrink-0" />
                   <p>Complex interfaces create decision fatigue</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"></div>
+                  <Skull className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
                   <p>No consideration for ADHD challenges</p>
                 </div>
               </div>
