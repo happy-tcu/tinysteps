@@ -13,6 +13,7 @@ import adobeLogo from '@/assets/adobe-logo.png';
 import medicalCollegeLogo from '@/assets/medical-college-logo.png';
 import innolabsLogo from '@/assets/innolabs-logo.png';
 import openaiLogo from '@/assets/openai-logo.png';
+import abstractBg from '@/assets/abstract-bg.png';
 const Landing = () => {
   const navigate = useNavigate();
   return <div className="min-h-screen bg-background">
@@ -36,7 +37,15 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20 text-center bg-gradient-background">
+      <section className="relative container mx-auto px-6 py-20 text-center bg-gradient-background overflow-hidden">
+        {/* Subtle background pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] bg-repeat bg-center pointer-events-none" 
+          style={{
+            backgroundImage: `url(${abstractBg})`,
+            backgroundSize: '800px 400px'
+          }}
+        />
         <Badge variant="outline" className="mb-6 px-6 py-2 border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
           Finally, productivity that works
         </Badge>
