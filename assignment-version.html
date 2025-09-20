@@ -3,614 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TinySteps - ADHD-Friendly Focus Assistant</title>
+    <title>TinySteps - ADHD-Friendly Focus Assistant | Small Steps, Big Progress</title>
+    <meta name="description" content="Break down overwhelming tasks into tiny, manageable steps with TinySteps. ADHD-friendly focus timer with gentle reminders, progress tracking, and positive reinforcement.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 0 0% 3.9%;
+            --primary: 0 0% 9%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 0 0% 96.1%;
+            --secondary-foreground: 0 0% 9%;
+            --muted: 0 0% 96.1%;
+            --muted-foreground: 0 0% 45.1%;
+            --border: 0 0% 89.8%;
+            --destructive: 0 84.2% 60.2%;
+            --radius: 0.5rem;
+            --gradient-primary: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 20%));
+            --gradient-subtle: linear-gradient(135deg, hsl(0 0% 96.1%), hsl(0 0% 98%));
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
             line-height: 1.6;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        .header {
+            border-bottom: 1px solid hsl(var(--border));
+            background: hsla(var(--background), 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 0;
         }
-
+        
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-section {
+            display: flex; align-items: center; gap: 12px; cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .logo-section:hover { opacity: 0.8; }
+        
         .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            width: 32px; height: 32px; background: var(--gradient-primary);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: hsl(var(--primary-foreground)); font-weight: bold; font-size: 16px;
         }
-
-        .logo:hover {
-            transform: scale(1.1);
+        
+        .brand-name {
+            font-size: 24px; font-weight: bold; background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .badge {
+            background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground));
+            padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;
         }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
+        
         .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 24px; border-radius: var(--radius); font-size: 14px; font-weight: 500;
+            border: none; cursor: pointer; transition: all 0.2s ease; text-decoration: none;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        .btn:hover { transform: translateY(-1px); }
+        
+        .btn-primary {
+            background: hsl(var(--foreground)); color: hsl(var(--background));
         }
-
+        .btn-primary:hover {
+            background: hsl(var(--foreground) / 0.9);
+            box-shadow: 0 4px 12px hsl(var(--foreground) / 0.15);
+        }
+        
         .btn-secondary {
-            background: #f8f9fa;
-            color: #333;
-            border: 2px solid #e1e8ed;
+            background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground));
+            border: 1px solid hsl(var(--border));
         }
-
-        .btn-secondary:hover {
-            background: #e9ecef;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .btn-secondary:hover { background: hsl(var(--muted)); }
+        
+        .btn-ghost { background: transparent; color: hsl(var(--muted-foreground)); }
+        .btn-ghost:hover { background: hsl(var(--muted)); }
+        
+        .btn-lg { padding: 16px 32px; font-size: 16px; height: 56px; }
+        .btn-sm { padding: 8px 16px; font-size: 12px; }
+        
+        .card {
+            background: hsl(var(--background)); border: 1px solid hsl(var(--border));
+            border-radius: calc(var(--radius) + 4px); padding: 24px;
+            box-shadow: 0 1px 3px hsl(var(--foreground) / 0.1); transition: all 0.2s ease;
         }
-
-        .timer-display {
-            font-size: 4em;
-            font-weight: bold;
-            margin: 30px 0;
-            color: #667eea;
-            font-family: 'Courier New', monospace;
+        .card:hover { box-shadow: 0 4px 12px hsl(var(--foreground) / 0.1); transform: translateY(-2px); }
+        
+        .main-content { padding: 48px 0; min-height: 80vh; }
+        
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .hero-left { display: flex; flex-direction: column; gap: 40px; justify-content: center; }
+        .hero-heading { display: flex; flex-direction: column; gap: 24px; }
+        
+        .main-title {
+            font-size: 3.5rem; font-weight: bold; line-height: 1.1; letter-spacing: -0.02em;
         }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e1e8ed;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 5px;
-            transition: width 0.3s ease;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .subtitle { font-size: 1.25rem; color: hsl(var(--muted-foreground)); line-height: 1.5; }
+        
+        .button-row { display: flex; gap: 16px; }
+        
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .feature-item { display: flex; align-items: center; gap: 12px; }
+        
         .feature-icon {
-            width: 24px;
-            height: 24px;
-            background: #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
+            width: 24px; height: 24px; border-radius: 50%; background: hsl(var(--foreground));
+            color: hsl(var(--background)); display: flex; align-items: center; justify-content: center;
         }
-
-        .hidden {
-            display: none;
+        
+        .visual-container {
+            background: var(--gradient-subtle); border-radius: 16px; padding: 32px;
+            min-height: 500px; position: relative; overflow: hidden;
         }
-
-        .status-message {
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-weight: 600;
+        
+        .comparison-card {
+            background: hsla(var(--background), 0.95); backdrop-filter: blur(10px);
+            border: 1px solid hsl(var(--border) / 0.5); border-radius: 12px; padding: 24px;
+            margin-bottom: 24px; transition: all 0.3s ease;
         }
-
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        .comparison-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px hsl(var(--foreground) / 0.1); }
+        
+        .card-content { display: flex; align-items: flex-start; gap: 16px; }
+        
+        .card-icon {
+            width: 48px; height: 48px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 20px;
         }
-
-        .status-warning {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
+        .card-icon.before { background: hsl(var(--destructive) / 0.1); color: hsl(var(--destructive)); }
+        .card-icon.after { background: hsl(var(--primary) / 0.1); color: hsl(var(--primary)); }
+        
+        .form-input {
+            padding: 12px 16px; border: 2px solid hsl(var(--border)); border-radius: var(--radius);
+            font-size: 16px; background: hsl(var(--background)); color: hsl(var(--foreground));
+            width: 100%; margin-bottom: 16px;
         }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+        .form-input:focus { outline: none; border-color: hsl(var(--primary)); }
+        
+        .timer-display {
+            font-size: 4rem; font-weight: bold; color: hsl(var(--primary));
+            font-family: 'SF Mono', monospace; text-align: center; margin: 30px 0;
         }
-
+        
+        .progress-bar {
+            width: 100%; height: 8px; background: hsl(var(--muted));
+            border-radius: 4px; overflow: hidden; margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%; background: var(--gradient-primary);
+            border-radius: 4px; transition: width 0.3s ease;
+        }
+        
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px; margin: 20px 0;
+        }
         .stat-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
+            background: hsl(var(--muted) / 0.5); padding: 20px; border-radius: 12px; text-align: center;
         }
-
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        /* Mobile Responsive */
+        .stat-number { font-size: 2rem; font-weight: bold; color: hsl(var(--primary)); }
+        .stat-label { color: hsl(var(--muted-foreground)); font-size: 0.875rem; }
+        
+        .hidden { display: none !important; }
+        
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .timer-display {
-                font-size: 3em;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .timer-active {
-            animation: pulse 2s infinite;
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
+            .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+            .main-title { font-size: 2.5rem; }
+            .button-row { flex-direction: column; }
+            .features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Welcome Screen -->
-        <div id="welcomeScreen" class="card fade-in">
-            <div class="logo" onclick="showScreen('taskScreen')">TS</div>
-            <h1>TinySteps</h1>
-            <p class="subtitle">ADHD-Friendly Focus Assistant</p>
-            <p>Break down overwhelming tasks into tiny, manageable steps. Perfect for ADHD minds seeking gentle focus and positive reinforcement.</p>
-            
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">⏰</div>
-                    <span>Customizable focus timer</span>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section" onclick="showScreen('welcomeScreen')">
+                    <div class="logo">TS</div>
+                    <span class="brand-name">TinySteps</span>
+                    <span class="badge">AI-Powered</span>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <span>Task breakdown system</span>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <span>Progress tracking</span>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🎵</div>
-                    <span>Gentle notifications</span>
-                </div>
+                <button class="btn btn-ghost btn-sm" onclick="showScreen('settingsScreen')">⚙️ Settings</button>
             </div>
-            
-            <button class="btn" onclick="showScreen('taskScreen')">Start Your Focus Journey</button>
         </div>
+    </header>
 
-        <!-- Task Creation Screen -->
-        <div id="taskScreen" class="card hidden">
-            <div class="logo" onclick="showScreen('welcomeScreen')">TS</div>
-            <h1>Create Your Task</h1>
-            <p class="subtitle">What would you like to focus on?</p>
-            
-            <div class="input-group">
-                <label for="taskInput">Task Description</label>
-                <input type="text" id="taskInput" placeholder="e.g., Write a report, Clean my room, Study for exam">
-            </div>
-            
-            <div class="input-group">
-                <label for="durationSelect">Focus Duration</label>
-                <select id="durationSelect">
-                    <option value="10">10 minutes</option>
-                    <option value="15">15 minutes</option>
-                    <option value="20">20 minutes</option>
-                    <option value="25" selected>25 minutes</option>
-                    <option value="30">30 minutes</option>
-                    <option value="45">45 minutes</option>
-                </select>
-            </div>
-            
-            <button class="btn" onclick="startFocusSession()">Start Focus Session</button>
-            <button class="btn btn-secondary" onclick="showScreen('welcomeScreen')">Back</button>
-        </div>
-
-        <!-- Focus Timer Screen -->
-        <div id="timerScreen" class="card hidden">
-            <div class="logo" onclick="showScreen('welcomeScreen')">TS</div>
-            <h1 id="currentTask">Focus Session</h1>
-            
-            <div class="timer-display" id="timerDisplay">25:00</div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-            </div>
-            
-            <div id="statusMessage"></div>
-            
-            <button class="btn" id="pauseBtn" onclick="toggleTimer()">Pause</button>
-            <button class="btn btn-secondary" onclick="stopSession()">Stop Session</button>
-        </div>
-
-        <!-- Break Screen -->
-        <div id="breakScreen" class="card hidden">
-            <div class="logo" onclick="showScreen('welcomeScreen')">TS</div>
-            <h1>Great Work! 🎉</h1>
-            <p class="subtitle">Time for a well-deserved break</p>
-            
-            <div class="timer-display" id="breakTimer">5:00</div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" id="breakProgressFill" style="width: 0%"></div>
-            </div>
-            
-            <p>Take a moment to:</p>
-            <ul style="text-align: left; margin: 20px 0;">
-                <li>Stretch your body</li>
-                <li>Take deep breaths</li>
-                <li>Hydrate yourself</li>
-                <li>Look away from screens</li>
-            </ul>
-            
-            <button class="btn" onclick="skipBreak()">Skip Break</button>
-            <button class="btn btn-secondary" onclick="showScreen('progressScreen')">View Progress</button>
-        </div>
-
-        <!-- Progress Screen -->
-        <div id="progressScreen" class="card hidden">
-            <div class="logo" onclick="showScreen('welcomeScreen')">TS</div>
-            <h1>Your Progress</h1>
-            <p class="subtitle">Look how far you've come!</p>
-            
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-number" id="sessionsCompleted">0</div>
-                    <div class="stat-label">Sessions Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="totalMinutes">0</div>
-                    <div class="stat-label">Minutes Focused</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="tasksCompleted">0</div>
-                    <div class="stat-label">Tasks Completed</div>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen">
+        <main class="main-content">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-left">
+                        <div class="hero-heading">
+                            <h1 class="main-title">Focus made Simple</h1>
+                            <p class="subtitle">Break down overwhelming tasks into tiny, manageable steps. AI-powered productivity for minds that think differently.</p>
+                        </div>
+                        
+                        <div class="button-row">
+                            <button class="btn btn-primary btn-lg" onclick="showScreen('taskScreen')">
+                                🧠 Start Focus Session
+                            </button>
+                            <button class="btn btn-secondary btn-lg" onclick="showScreen('progressScreen')">
+                                🏆 View Progress
+                            </button>
+                        </div>
+                        
+                        <div>
+                            <h2 style="margin-bottom: 16px; font-size: 1.125rem;">What you get:</h2>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="feature-icon">🧠</div>
+                                    <span><strong>AI Task Breakdown</strong> - Smart step-by-step guidance</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">✨</div>
+                                    <span><strong>AI Suggestions</strong> - Personalized recommendations</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">⏰</div>
+                                    <span><strong>Focus Timer</strong> - Pomodoro technique optimized</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">🏆</div>
+                                    <span><strong>Progress Tracking</strong> - Build streaks and earn points</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="visual-container">
+                        <div class="comparison-card">
+                            <div class="card-content">
+                                <div class="card-icon before">🎯</div>
+                                <div>
+                                    <h3 style="color: hsl(var(--destructive)); margin-bottom: 8px;">Before: Overwhelmed</h3>
+                                    <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">"I need to clean my entire house" feels impossible to start</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-card">
+                            <div class="card-content">
+                                <div class="card-icon after">✓</div>
+                                <div>
+                                    <h3 style="color: hsl(var(--primary)); margin-bottom: 8px;">After: Actionable</h3>
+                                    <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">1. Pick up 5 items from coffee table<br>2. Wipe counter for 2 minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div id="recentTasks"></div>
-            
-            <button class="btn" onclick="showScreen('taskScreen')">Start New Task</button>
-            <button class="btn btn-secondary" onclick="showScreen('welcomeScreen')">Home</button>
-            <button class="btn btn-secondary" onclick="clearProgress()">Reset Progress</button>
-        </div>
+        </main>
+    </div>
+
+    <!-- Task Creation Screen -->
+    <div id="taskScreen" class="hidden">
+        <main class="main-content">
+            <div class="container">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div class="card">
+                        <div style="text-align: center; margin-bottom: 32px;">
+                            <div class="logo" style="margin: 0 auto 16px;">TS</div>
+                            <h1 style="font-size: 2rem; margin-bottom: 8px;">Create Your Task</h1>
+                            <p class="subtitle">What would you like to focus on?</p>
+                        </div>
+                        
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Task Description</label>
+                        <input type="text" id="taskInput" class="form-input" placeholder="e.g., Write a report, Clean my room, Study for exam">
+                        
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Focus Duration</label>
+                        <select id="durationSelect" class="form-input">
+                            <option value="10">10 minutes</option>
+                            <option value="15">15 minutes</option>
+                            <option value="20">20 minutes</option>
+                            <option value="25" selected>25 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="45">45 minutes</option>
+                        </select>
+                        
+                        <div style="display: flex; gap: 12px; margin-top: 24px;">
+                            <button class="btn btn-primary" style="flex: 1;" onclick="startFocusSession()">Start Focus Session</button>
+                            <button class="btn btn-secondary" onclick="showScreen('welcomeScreen')">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Timer Screen -->
+    <div id="timerScreen" class="hidden">
+        <main class="main-content">
+            <div class="container">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div class="card" style="text-align: center;">
+                        <div class="logo" style="margin: 0 auto 16px;">TS</div>
+                        <h1 id="currentTask" style="font-size: 1.5rem; margin-bottom: 24px;">Focus Session</h1>
+                        
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                        
+                        <div id="statusMessage"></div>
+                        
+                        <div style="display: flex; gap: 12px; margin-top: 24px;">
+                            <button class="btn btn-primary" style="flex: 1;" id="pauseBtn" onclick="toggleTimer()">Pause</button>
+                            <button class="btn btn-secondary" onclick="stopSession()">Stop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Progress Screen -->
+    <div id="progressScreen" class="hidden">
+        <main class="main-content">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="card">
+                        <div style="text-align: center; margin-bottom: 32px;">
+                            <div class="logo" style="margin: 0 auto 16px;">TS</div>
+                            <h1 style="font-size: 2rem; margin-bottom: 8px;">Your Progress</h1>
+                            <p class="subtitle">Look how far you've come!</p>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" id="sessionsCompleted">0</div>
+                                <div class="stat-label">Sessions Completed</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="totalMinutes">0</div>
+                                <div class="stat-label">Minutes Focused</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="tasksCompleted">0</div>
+                                <div class="stat-label">Tasks Completed</div>
+                            </div>
+                        </div>
+                        
+                        <div id="recentTasks" style="margin: 24px 0;"></div>
+                        
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="showScreen('taskScreen')">Start New Task</button>
+                            <button class="btn btn-secondary" onclick="showScreen('welcomeScreen')">Home</button>
+                            <button class="btn btn-secondary" onclick="clearProgress()">Reset Progress</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settingsScreen" class="hidden">
+        <main class="main-content">
+            <div class="container">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div class="card">
+                        <div style="text-align: center; margin-bottom: 32px;">
+                            <div class="logo" style="margin: 0 auto 16px;">TS</div>
+                            <h1 style="font-size: 2rem; margin-bottom: 8px;">Settings</h1>
+                            <p class="subtitle">Customize your focus experience</p>
+                        </div>
+                        
+                        <div style="padding: 16px; background: hsl(var(--muted) / 0.5); border-radius: var(--radius); margin-bottom: 24px;">
+                            <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">
+                                Settings would be customizable in the full version. For this demo, all features are available with default configurations.
+                            </p>
+                        </div>
+                        
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="showScreen('welcomeScreen')">Back to Home</button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
-        // Application State
-        let currentTimer = null;
-        let currentBreakTimer = null;
-        let timeRemaining = 0;
-        let totalTime = 0;
-        let breakTimeRemaining = 0;
-        let isRunning = false;
-        let isBreakRunning = false;
+        let currentTimer = null, timeRemaining = 0, totalTime = 0, isRunning = false;
         
-        // Load progress from localStorage
         function loadProgress() {
-            const progress = JSON.parse(localStorage.getItem('tinysteps-progress') || '{"sessions": 0, "minutes": 0, "tasks": 0, "recentTasks": []}');
-            return progress;
+            return JSON.parse(localStorage.getItem('tinysteps-progress') || '{"sessions": 0, "minutes": 0, "tasks": 0, "recentTasks": []}');
         }
         
-        // Save progress to localStorage
         function saveProgress(progress) {
             localStorage.setItem('tinysteps-progress', JSON.stringify(progress));
         }
         
-        // Show specific screen
         function showScreen(screenId) {
-            const screens = ['welcomeScreen', 'taskScreen', 'timerScreen', 'breakScreen', 'progressScreen'];
-            screens.forEach(screen => {
+            ['welcomeScreen', 'taskScreen', 'timerScreen', 'progressScreen', 'settingsScreen'].forEach(screen => {
                 document.getElementById(screen).classList.add('hidden');
             });
             document.getElementById(screenId).classList.remove('hidden');
-            
-            if (screenId === 'progressScreen') {
-                updateProgressDisplay();
-            }
+            if (screenId === 'progressScreen') updateProgressDisplay();
         }
         
-        // Show status message
-        function showStatus(message, type = 'success') {
-            const statusEl = document.getElementById('statusMessage');
-            statusEl.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
-            setTimeout(() => {
-                statusEl.innerHTML = '';
-            }, 3000);
-        }
-        
-        // Start focus session
         function startFocusSession() {
             const task = document.getElementById('taskInput').value.trim();
             const duration = parseInt(document.getElementById('durationSelect').value);
+            if (!task) return alert('Please enter a task description');
             
-            if (!task) {
-                showStatus('Please enter a task description', 'warning');
-                return;
-            }
-            
-            // Set up timer
-            totalTime = duration * 60;
-            timeRemaining = totalTime;
+            totalTime = timeRemaining = duration * 60;
             document.getElementById('currentTask').textContent = task;
-            
             showScreen('timerScreen');
             startTimer();
         }
         
-        // Start timer
         function startTimer() {
             if (isRunning) return;
-            
             isRunning = true;
             document.getElementById('pauseBtn').textContent = 'Pause';
-            document.querySelector('.timer-display').classList.add('timer-active');
-            
             currentTimer = setInterval(() => {
                 timeRemaining--;
                 updateTimerDisplay();
                 updateProgress();
-                
-                if (timeRemaining <= 0) {
-                    completeSession();
-                }
+                if (timeRemaining <= 0) completeSession();
             }, 1000);
         }
         
-        // Pause/Resume timer
         function toggleTimer() {
             if (isRunning) {
-                pauseTimer();
+                isRunning = false;
+                clearInterval(currentTimer);
+                document.getElementById('pauseBtn').textContent = 'Resume';
             } else {
                 startTimer();
             }
         }
         
-        // Pause timer
-        function pauseTimer() {
-            if (!isRunning) return;
-            
-            isRunning = false;
-            clearInterval(currentTimer);
-            document.getElementById('pauseBtn').textContent = 'Resume';
-            document.querySelector('.timer-display').classList.remove('timer-active');
-        }
-        
-        // Update timer display
         function updateTimerDisplay() {
             const minutes = Math.floor(timeRemaining / 60);
             const seconds = timeRemaining % 60;
-            document.getElementById('timerDisplay').textContent = 
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timerDisplay').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
         }
         
-        // Update progress bar
         function updateProgress() {
             const progress = ((totalTime - timeRemaining) / totalTime) * 100;
             document.getElementById('progressFill').style.width = `${progress}%`;
         }
         
-        // Complete session
         function completeSession() {
-            pauseTimer();
-            document.querySelector('.timer-display').classList.remove('timer-active');
+            clearInterval(currentTimer);
+            isRunning = false;
             
-            // Save progress
             const progress = loadProgress();
             progress.sessions += 1;
             progress.minutes += Math.floor(totalTime / 60);
+            progress.tasks += 1;
             
             const task = document.getElementById('currentTask').textContent;
-            if (task !== 'Focus Session') {
-                progress.tasks += 1;
-                progress.recentTasks.unshift({
-                    task: task,
-                    duration: Math.floor(totalTime / 60),
-                    completed: new Date().toLocaleDateString()
-                });
-                if (progress.recentTasks.length > 5) {
-                    progress.recentTasks.pop();
-                }
-            }
+            progress.recentTasks.unshift({
+                task: task,
+                duration: Math.floor(totalTime / 60),
+                completed: new Date().toLocaleDateString()
+            });
+            if (progress.recentTasks.length > 5) progress.recentTasks.pop();
             
             saveProgress(progress);
-            
-            showStatus('Session completed! Great work! 🎉');
-            setTimeout(() => {
-                startBreak();
-            }, 2000);
-        }
-        
-        // Start break
-        function startBreak() {
-            breakTimeRemaining = 5 * 60; // 5 minute break
-            showScreen('breakScreen');
-            startBreakTimer();
-        }
-        
-        // Start break timer
-        function startBreakTimer() {
-            isBreakRunning = true;
-            
-            currentBreakTimer = setInterval(() => {
-                breakTimeRemaining--;
-                updateBreakDisplay();
-                updateBreakProgress();
-                
-                if (breakTimeRemaining <= 0) {
-                    completeBreak();
-                }
-            }, 1000);
-        }
-        
-        // Update break display
-        function updateBreakDisplay() {
-            const minutes = Math.floor(breakTimeRemaining / 60);
-            const seconds = breakTimeRemaining % 60;
-            document.getElementById('breakTimer').textContent = 
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        }
-        
-        // Update break progress
-        function updateBreakProgress() {
-            const progress = ((5 * 60 - breakTimeRemaining) / (5 * 60)) * 100;
-            document.getElementById('breakProgressFill').style.width = `${progress}%`;
-        }
-        
-        // Complete break
-        function completeBreak() {
-            clearInterval(currentBreakTimer);
-            isBreakRunning = false;
+            alert('Session completed! Great work! 🎉');
             showScreen('progressScreen');
         }
         
-        // Skip break
-        function skipBreak() {
-            if (currentBreakTimer) {
-                clearInterval(currentBreakTimer);
-                isBreakRunning = false;
-            }
-            showScreen('progressScreen');
-        }
-        
-        // Stop session
         function stopSession() {
-            if (currentTimer) {
-                clearInterval(currentTimer);
-                isRunning = false;
-            }
-            document.querySelector('.timer-display').classList.remove('timer-active');
+            clearInterval(currentTimer);
+            isRunning = false;
             showScreen('taskScreen');
         }
         
-        // Update progress display
         function updateProgressDisplay() {
             const progress = loadProgress();
             document.getElementById('sessionsCompleted').textContent = progress.sessions;
@@ -619,40 +491,26 @@
             
             const recentTasksEl = document.getElementById('recentTasks');
             if (progress.recentTasks.length > 0) {
-                recentTasksEl.innerHTML = '<h3>Recent Tasks:</h3>' + 
+                recentTasksEl.innerHTML = '<h3 style="margin-bottom: 16px;">Recent Tasks:</h3>' + 
                     progress.recentTasks.map(task => 
-                        `<div class="stat-card" style="text-align: left;">
+                        `<div class="stat-card" style="text-align: left; margin-bottom: 12px;">
                             <strong>${task.task}</strong><br>
-                            <small>${task.duration} minutes • ${task.completed}</small>
+                            <small style="color: hsl(var(--muted-foreground));">${task.duration} minutes • ${task.completed}</small>
                         </div>`
                     ).join('');
             } else {
-                recentTasksEl.innerHTML = '<p>No completed tasks yet. Start your first session!</p>';
+                recentTasksEl.innerHTML = '<p style="text-align: center;">No completed tasks yet. Start your first session!</p>';
             }
         }
         
-        // Clear progress
         function clearProgress() {
-            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+            if (confirm('Reset all progress?')) {
                 localStorage.removeItem('tinysteps-progress');
                 updateProgressDisplay();
-                showStatus('Progress reset successfully');
             }
         }
         
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show welcome screen by default
-            showScreen('welcomeScreen');
-            
-            // Add keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                if (e.code === 'Space' && document.getElementById('timerScreen').classList.contains('hidden') === false) {
-                    e.preventDefault();
-                    toggleTimer();
-                }
-            });
-        });
+        document.addEventListener('DOMContentLoaded', () => showScreen('welcomeScreen'));
     </script>
 </body>
 </html>
