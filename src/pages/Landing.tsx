@@ -45,7 +45,13 @@ const Landing = () => {
         <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
           Stop drowning in
           <br />
-          <span className="bg-gradient-primary bg-clip-text text-transparent">endless tasks</span>
+          <span className="text-blue-600 relative">
+            endless tasks
+            <span className="absolute inset-0 flex flex-col justify-center">
+              <span className="h-0.5 bg-red-500 transform -rotate-12"></span>
+              <span className="h-0.5 bg-red-500 transform rotate-12"></span>
+            </span>
+          </span>
         </h1>
         
         <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
