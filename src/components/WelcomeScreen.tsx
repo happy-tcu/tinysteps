@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Play, Target, Trophy, Clock, Settings, LogOut, BrainCircuit, 
-  Check, Star, Users, Zap, ArrowRight, ChevronRight, X,
-  Heart, Timer, Award, BarChart3, Brain, Sparkles
-} from "lucide-react";
+import { Play, Target, Trophy, Clock, Settings, LogOut, BrainCircuit, Check, Star, Users, Zap, ArrowRight, ChevronRight, X, Heart, Timer, Award, BarChart3, Brain, Sparkles } from "lucide-react";
 import logo from "@/assets/logo.png";
 import adhdOverwhelm from "@/assets/adhd-overwhelm.png";
 import adhdFocused from "@/assets/adhd-focused.png";
@@ -14,7 +10,6 @@ import { useAppData } from "@/hooks/useAppData";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-
 interface WelcomeScreenProps {
   onStartFocus: () => void;
   onViewProgress: () => void;
@@ -22,7 +17,6 @@ interface WelcomeScreenProps {
   hasCompletedOnboarding?: boolean;
   onCompleteOnboarding?: () => void;
 }
-
 export const WelcomeScreen = ({
   onStartFocus,
   onViewProgress,
@@ -36,9 +30,8 @@ export const WelcomeScreen = ({
     openaiApiKey: '',
     enableAiSuggestions: true,
     enableAiBreakdown: true,
-    enableAiCoaching: true,
+    enableAiCoaching: true
   });
-  
   const {
     appData,
     getTodaysStats
@@ -48,30 +41,23 @@ export const WelcomeScreen = ({
     isAuthenticated
   } = useAuth();
   const todaysStats = getTodaysStats();
-
-  const onboardingSteps = [
-    {
-      title: "Welcome to TinySteps! 👋",
-      description: "Perfect for ADHD minds - break overwhelming tasks into manageable tiny steps.",
-      action: "Get Started"
-    },
-    {
-      title: "AI-Powered Task Breakdown 🧠",
-      description: "Our AI understands ADHD challenges and creates bite-sized steps that actually work.",
-      action: "Sounds Great!"
-    },
-    {
-      title: "Track Your Progress 📊",
-      description: "Build momentum with streak tracking, points, and achievements designed for dopamine hits.",
-      action: "Let's Focus!"
-    }
-  ];
-
+  const onboardingSteps = [{
+    title: "Welcome to TinySteps! 👋",
+    description: "Perfect for ADHD minds - break overwhelming tasks into manageable tiny steps.",
+    action: "Get Started"
+  }, {
+    title: "AI-Powered Task Breakdown 🧠",
+    description: "Our AI understands ADHD challenges and creates bite-sized steps that actually work.",
+    action: "Sounds Great!"
+  }, {
+    title: "Track Your Progress 📊",
+    description: "Build momentum with streak tracking, points, and achievements designed for dopamine hits.",
+    action: "Let's Focus!"
+  }];
   const handleCompleteOnboarding = () => {
     setShowOnboarding(false);
     onCompleteOnboarding?.();
   };
-
   const nextStep = () => {
     if (currentStep < onboardingSteps.length - 1) {
       setCurrentStep(prev => prev + 1);
@@ -86,39 +72,30 @@ export const WelcomeScreen = ({
     tasksCompleted: "47,293",
     averageImprovement: "73%"
   };
-
-  const features = [
-    {
-      icon: <Brain className="w-4 h-4" />,
-      title: "AI Task Breakdown",
-      description: "Smart step-by-step guidance",
-      highlight: true
-    },
-    {
-      icon: <Sparkles className="w-4 h-4" />,
-      title: "AI Suggestions",
-      description: "Personalized task recommendations",
-      highlight: true
-    },
-    {
-      icon: <Timer className="w-4 h-4" />,
-      title: "Focus Timer",
-      description: "Pomodoro technique optimized",
-      highlight: false
-    },
-    {
-      icon: <Award className="w-4 h-4" />,
-      title: "Progress Tracking",
-      description: "Build streaks and earn points",
-      highlight: false
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const features = [{
+    icon: <Brain className="w-4 h-4" />,
+    title: "AI Task Breakdown",
+    description: "Smart step-by-step guidance",
+    highlight: true
+  }, {
+    icon: <Sparkles className="w-4 h-4" />,
+    title: "AI Suggestions",
+    description: "Personalized task recommendations",
+    highlight: true
+  }, {
+    icon: <Timer className="w-4 h-4" />,
+    title: "Focus Timer",
+    description: "Pomodoro technique optimized",
+    highlight: false
+  }, {
+    icon: <Award className="w-4 h-4" />,
+    title: "Progress Tracking",
+    description: "Build streaks and earn points",
+    highlight: false
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Onboarding Modal */}
-      {showOnboarding && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
+      {showOnboarding && <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
           <Card className="w-full max-w-md mx-auto animate-scale-in">
             <CardHeader className="text-center">
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
@@ -134,43 +111,25 @@ export const WelcomeScreen = ({
             <CardContent className="space-y-6">
               {/* Progress indicator */}
               <div className="flex gap-2 justify-center">
-                {onboardingSteps.map((_, index) => (
-                  <div 
-                    key={index}
-                    className={cn(
-                      "w-2 h-2 rounded-full transition-colors",
-                      index <= currentStep ? "bg-primary" : "bg-muted"
-                    )}
-                  />
-                ))}
+                {onboardingSteps.map((_, index) => <div key={index} className={cn("w-2 h-2 rounded-full transition-colors", index <= currentStep ? "bg-primary" : "bg-muted")} />)}
               </div>
               
               <div className="flex gap-3">
-                {currentStep > 0 && (
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setCurrentStep(prev => prev - 1)}
-                    className="flex-1"
-                  >
+                {currentStep > 0 && <Button variant="outline" onClick={() => setCurrentStep(prev => prev - 1)} className="flex-1">
                     Back
-                  </Button>
-                )}
+                  </Button>}
                 <Button onClick={nextStep} className="flex-1">
                   {onboardingSteps[currentStep].action}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
               
-              <button 
-                onClick={handleCompleteOnboarding}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors w-full text-center"
-              >
+              <button onClick={handleCompleteOnboarding} className="text-sm text-muted-foreground hover:text-foreground transition-colors w-full text-center">
                 Skip for now
               </button>
             </CardContent>
           </Card>
-        </div>
-      )}
+        </div>}
 
       {/* Skip to content for accessibility */}
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">
@@ -184,36 +143,20 @@ export const WelcomeScreen = ({
             <img src={logo} alt="TinySteps - ADHD Focus Assistant" className="h-8 w-8" />
             <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
             <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
-            {!aiSettings.openaiApiKey && (
-              <Badge variant="outline" className="text-xs text-orange-600 border-orange-200">
+            {!aiSettings.openaiApiKey && <Badge variant="outline" className="text-xs text-orange-600 border-orange-200">
                 Setup Required
-              </Badge>
-            )}
+              </Badge>}
           </div>
           <nav role="navigation" aria-label="Main navigation" className="flex gap-2">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={onOpenSettings} 
-              className="gap-2"
-              aria-label="Open settings"
-            >
+            <Button variant="ghost" size="sm" onClick={onOpenSettings} className="gap-2" aria-label="Open settings">
               <Settings className="w-4 h-4" />
               <span className="sr-only sm:not-sr-only">Settings</span>
             </Button>
             
-            {isAuthenticated && (
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={signOut} 
-                className="gap-2 text-muted-foreground hover:text-destructive"
-                aria-label="Sign out of account"
-              >
+            {isAuthenticated && <Button variant="ghost" size="sm" onClick={signOut} className="gap-2 text-muted-foreground hover:text-destructive" aria-label="Sign out of account">
                 <LogOut className="w-4 h-4" />
                 <span className="sr-only sm:not-sr-only">Sign Out</span>
-              </Button>
-            )}
+              </Button>}
           </nav>
         </div>
       </header>
@@ -226,8 +169,10 @@ export const WelcomeScreen = ({
           <div className="space-y-10 flex flex-col justify-center">
             {/* Main Heading */}
             <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent dark:from-white dark:to-gray-300 leading-tight">
-                 Focus made <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
+              <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                Focus made
+                
+                <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
                 <span className="text-2xl block text-muted-foreground font-normal mt-2">with AI</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
@@ -235,8 +180,7 @@ export const WelcomeScreen = ({
               </p>
               
               {/* AI Status Alert */}
-              {!aiSettings.openaiApiKey && (
-                <div className="p-4 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 rounded-lg">
+              {!aiSettings.openaiApiKey && <div className="p-4 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 rounded-lg">
                   <div className="flex items-start gap-3">
                     <Brain className="w-5 h-5 text-orange-600 mt-0.5" />
                     <div>
@@ -244,28 +188,17 @@ export const WelcomeScreen = ({
                       <p className="text-sm text-orange-700 dark:text-orange-200 mt-1">
                         Add your OpenAI API key in Settings to unlock AI task breakdown, suggestions, and coaching.
                       </p>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        onClick={onOpenSettings}
-                        className="mt-2 border-orange-300 text-orange-700 hover:bg-orange-100"
-                      >
+                      <Button variant="outline" size="sm" onClick={onOpenSettings} className="mt-2 border-orange-300 text-orange-700 hover:bg-orange-100">
                         Setup AI Features
                       </Button>
                     </div>
                   </div>
-                </div>
-              )}
+                </div>}
             </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={onStartFocus} 
-                size="lg" 
-                className="h-14 px-8 text-lg bg-foreground text-background hover:bg-foreground/90 hover-scale transition-all duration-200"
-                aria-describedby="start-focus-description"
-              >
+              <Button onClick={onStartFocus} size="lg" className="h-14 px-8 text-lg bg-foreground text-background hover:bg-foreground/90 hover-scale transition-all duration-200" aria-describedby="start-focus-description">
                 <BrainCircuit className="w-5 h-5 mr-2" />
                 Start Focus Session
               </Button>
@@ -273,13 +206,7 @@ export const WelcomeScreen = ({
                 Begin a focused work session with task breakdown and timer
               </p>
               
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={onViewProgress} 
-                className="h-14 px-8 hover-scale transition-all duration-200"
-                aria-describedby="view-progress-description"
-              >
+              <Button variant="outline" size="lg" onClick={onViewProgress} className="h-14 px-8 hover-scale transition-all duration-200" aria-describedby="view-progress-description">
                 <Trophy className="w-4 h-4 mr-2" />
                 View Progress
               </Button>
@@ -289,50 +216,34 @@ export const WelcomeScreen = ({
             </div>
 
             {/* Stats Row */}
-            {appData.userStats.totalTasks > 0 && (
-              <section aria-labelledby="daily-stats" className="flex gap-8 py-6 border-y border-border/50">
+            {appData.userStats.totalTasks > 0 && <section aria-labelledby="daily-stats" className="flex gap-8 py-6 border-y border-border/50">
                 <h2 id="daily-stats" className="sr-only">Daily Statistics</h2>
                 <div>
                   <div className="text-3xl font-bold text-foreground">{todaysStats.sessionsToday}</div>
                   <div className="text-sm text-muted-foreground">Sessions Today</div>
                 </div>
-                {appData.userStats.currentStreak > 0 && (
-                  <div>
+                {appData.userStats.currentStreak > 0 && <div>
                     <div className="text-3xl font-bold text-warning">{appData.userStats.currentStreak}</div>
                     <div className="text-sm text-muted-foreground">Day Streak</div>
-                  </div>
-                )}
-              </section>
-            )}
+                  </div>}
+              </section>}
 
             {/* Feature List */}
             <section aria-labelledby="feature-list" className="space-y-4">
               <h2 id="feature-list" className="text-lg font-semibold text-foreground">What you get:</h2>
               <ul className="grid grid-cols-1 gap-3" role="list">
-                {features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <div className={cn(
-                      "w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-1 ring-black/10",
-                      feature.highlight 
-                        ? "bg-black text-white shadow-lg" 
-                        : "bg-gray-900 text-white"
-                    )}>
+                {features.map((feature, index) => <li key={index} className="flex items-center gap-3">
+                    <div className={cn("w-6 h-6 rounded-full flex items-center justify-center", feature.highlight ? "bg-gradient-primary text-white" : "bg-primary/10 text-primary")}>
                       {feature.icon}
                     </div>
                     <div>
-                      <span className={cn(
-                        "font-medium",
-                        feature.highlight ? "text-foreground" : "text-foreground"
-                      )}>
+                      <span className={cn("font-medium", feature.highlight ? "text-foreground" : "text-foreground")}>
                         {feature.title}
                       </span>
                       <span className="text-muted-foreground"> - {feature.description}</span>
-                      {feature.highlight && (
-                        <Badge variant="secondary" className="ml-2 text-xs">AI</Badge>
-                      )}
+                      {feature.highlight && <Badge variant="secondary" className="ml-2 text-xs">AI</Badge>}
                     </div>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </section>
           </div>
@@ -452,6 +363,5 @@ export const WelcomeScreen = ({
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
