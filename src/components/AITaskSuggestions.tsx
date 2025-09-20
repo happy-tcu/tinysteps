@@ -132,7 +132,18 @@ const AITaskSuggestions: React.FC<AITaskSuggestionsProps> = ({
                     <Badge variant="outline" className="text-xs">
                       {suggestion.category}
                     </Badge>
-                    <span className="text-xs text-primary">Click to start →</span>
+                     <Button
+                       variant="link"
+                       size="sm"
+                       className="text-xs p-0 h-auto"
+                       aria-label={`Start ${suggestion.title} for ${suggestion.estimatedMinutes} minutes`}
+                       onClick={(e) => {
+                         e.stopPropagation();
+                         onSelectTask(suggestion.title, suggestion.estimatedMinutes);
+                       }}
+                     >
+                       Click to start →
+                     </Button>
                   </div>
                 </div>
               </Card>)}
