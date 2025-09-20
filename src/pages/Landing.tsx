@@ -285,9 +285,7 @@ const Landing = () => {
           </div>
           <div className="pt-8 border-t flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-muted-foreground mb-4 md:mb-0">© 2025 TinySteps. All rights reserved.</div>
-            <div className="text-sm text-muted-foreground">
-              Made with ❤️ for productive minds
-            </div>
+            <div className="text-sm text-muted-foreground">Made with love for productive minds</div>
           </div>
         </div>
       </footer>
