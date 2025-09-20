@@ -226,7 +226,7 @@ export const WelcomeScreen = ({
           <div className="space-y-10 flex flex-col justify-center">
             {/* Main Heading */}
             <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold text-black dark:text-white leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent dark:from-white dark:to-gray-300 leading-tight">
                 Focus made
                 <br />
                 <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
