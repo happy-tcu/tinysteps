@@ -172,7 +172,7 @@ export const WelcomeScreen = ({
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Focus made
                 
-                <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
+                <span className="text-foreground">simple</span>
                 <span className="text-2xl block text-muted-foreground font-normal mt-2">with AI</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
