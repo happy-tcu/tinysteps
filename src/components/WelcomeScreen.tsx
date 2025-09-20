@@ -314,10 +314,10 @@ export const WelcomeScreen = ({
                 {features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <div className={cn(
-                      "w-6 h-6 rounded-full flex items-center justify-center",
+                      "w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-1 ring-black/10",
                       feature.highlight 
-                        ? "bg-gradient-primary text-white" 
-                        : "bg-primary/10 text-primary"
+                        ? "bg-black text-white shadow-lg" 
+                        : "bg-gray-900 text-white"
                     )}>
                       {feature.icon}
                     </div>
