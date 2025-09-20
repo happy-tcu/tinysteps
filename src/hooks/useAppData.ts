@@ -6,6 +6,8 @@ export interface CompletedTask {
   duration: number;
   completedAt: Date;
   date: string;
+  category?: string;
+  quality?: number;
 }
 
 export interface UserStats {
@@ -15,6 +17,10 @@ export interface UserStats {
   lastCompletionDate: string | null;
   points: number;
   achievements: string[];
+  longestStreak?: number;
+  totalPoints?: number;
+  level?: number;
+  weeklyGoal?: number;
 }
 
 export interface AppData {
@@ -37,6 +43,10 @@ const defaultAppData: AppData = {
     lastCompletionDate: null,
     points: 0,
     achievements: [],
+    longestStreak: 0,
+    totalPoints: 0,
+    level: 1,
+    weeklyGoal: 1500,
   },
   settings: {
     defaultFocusTime: 25,
