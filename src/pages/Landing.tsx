@@ -58,7 +58,9 @@ const Landing = () => {
             <BrainCircuit className="mr-2 text-current" />
             Start Focusing Now
           </Button>
-          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => document.getElementById('features')?.scrollIntoView({
+          behavior: 'smooth'
+        })}>
             Learn More
             <ChevronRight className="ml-2 text-current" />
           </Button>
@@ -67,11 +69,7 @@ const Landing = () => {
         {/* ADHD Illustration */}
         <div className="flex justify-center mb-12">
           <div className="max-w-md w-full">
-            <img 
-              src={intrusiveThoughts} 
-              alt="ADHD brain with intrusive thoughts illustration" 
-              className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
-            />
+            <img src={intrusiveThoughts} alt="ADHD brain with intrusive thoughts illustration" className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity duration-300" />
           </div>
         </div>
 
@@ -81,103 +79,57 @@ const Landing = () => {
           
           {/* Logo Slider */}
           <div className="w-full overflow-hidden bg-muted/20 py-8 rounded-lg">
-            <div className="flex items-center gap-16 animate-[scroll_40s_linear_infinite] hover:animate-none" style={{width: 'calc(200% + 4rem)'}}>
+            <div className="flex items-center gap-16 animate-[scroll_40s_linear_infinite] hover:animate-none" style={{
+            width: 'calc(200% + 4rem)'
+          }}>
               {/* First set of logos */}
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={tcuLogo} 
-                  alt="TCU" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={tcuLogo} alt="TCU" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={techcorpLogo} 
-                  alt="TechCorp" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={techcorpLogo} alt="TechCorp" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={adobeLogo} 
-                  alt="Adobe" 
-                  className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={adobeLogo} alt="Adobe" className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={medicalCollegeLogo} 
-                  alt="Medical College" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={medicalCollegeLogo} alt="Medical College" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={innolabsLogo} 
-                  alt="InnoLabs" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={innolabsLogo} alt="InnoLabs" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={openaiLogo} 
-                  alt="OpenAI" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={openaiLogo} alt="OpenAI" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
 
               {/* Duplicate set for seamless loop */}
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={tcuLogo} 
-                  alt="TCU" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={tcuLogo} alt="TCU" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={techcorpLogo} 
-                  alt="TechCorp" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={techcorpLogo} alt="TechCorp" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={adobeLogo} 
-                  alt="Adobe" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={adobeLogo} alt="Adobe" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={medicalCollegeLogo} 
-                  alt="Medical College" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={medicalCollegeLogo} alt="Medical College" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={innolabsLogo} 
-                  alt="InnoLabs" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={innolabsLogo} alt="InnoLabs" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
               
               <div className="flex items-center justify-center min-w-[120px]">
-                <img 
-                  src={openaiLogo} 
-                  alt="OpenAI" 
-                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0"
-                />
+                <img src={openaiLogo} alt="OpenAI" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale hover:grayscale-0" />
               </div>
             </div>
           </div>
@@ -302,7 +254,9 @@ const Landing = () => {
             <Button size="lg" className="text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-success" onClick={() => navigate('/auth')}>
               Start Free Today
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90" onClick={() => document.getElementById('features')?.scrollIntoView({
+            behavior: 'smooth'
+          })}>
               View Features
             </Button>
           </div>
@@ -330,9 +284,7 @@ const Landing = () => {
             
           </div>
           <div className="pt-8 border-t flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-              © 2024 TinySteps. All rights reserved.
-            </div>
+            <div className="text-sm text-muted-foreground mb-4 md:mb-0">© 2025 TinySteps. All rights reserved.</div>
             <div className="text-sm text-muted-foreground">
               Made with ❤️ for productive minds
             </div>
