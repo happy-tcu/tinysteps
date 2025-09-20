@@ -82,62 +82,62 @@ export const ProgressDashboard = ({ onBack }: ProgressDashboardProps) => {
       <div className="max-w-7xl mx-auto w-full space-y-6">
         {/* Enhanced Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <Card className="p-4 shadow-soft bg-gradient-primary text-primary-foreground">
+          <Card className="p-4 shadow-soft bg-white text-black border">
             <div className="flex items-center gap-3">
-              <Target className="w-8 h-8" />
+              <Target className="w-8 h-8 text-black" />
               <div>
-                <p className="text-2xl font-bold">{todaysStats.sessionsToday}</p>
-                <p className="text-sm opacity-90">Sessions Today</p>
+                <p className="text-2xl font-bold text-black">{todaysStats.sessionsToday}</p>
+                <p className="text-sm text-gray-600">Sessions Today</p>
               </div>
             </div>
           </Card>
           
-          <Card className="p-4 shadow-soft bg-gradient-success text-secondary-foreground">
+          <Card className="p-4 shadow-soft bg-white text-black border">
             <div className="flex items-center gap-3">
-              <Clock className="w-8 h-8" />
+              <Clock className="w-8 h-8 text-black" />
               <div>
-                <p className="text-2xl font-bold">{todaysStats.minutesToday}</p>
-                <p className="text-sm opacity-90">Minutes Today</p>
+                <p className="text-2xl font-bold text-black">{todaysStats.minutesToday}</p>
+                <p className="text-sm text-gray-600">Minutes Today</p>
               </div>
             </div>
           </Card>
           
-          <Card className="p-4 shadow-soft bg-gradient-to-r from-accent to-warning text-accent-foreground">
+          <Card className="p-4 shadow-soft bg-white text-black border">
             <div className="flex items-center gap-3">
-              <Flame className="w-8 h-8" />
+              <Flame className="w-8 h-8 text-black" />
               <div>
-                <p className="text-2xl font-bold">{appData.userStats.currentStreak}</p>
-                <p className="text-sm opacity-90">Day Streak</p>
+                <p className="text-2xl font-bold text-black">{appData.userStats.currentStreak}</p>
+                <p className="text-sm text-gray-600">Day Streak</p>
               </div>
             </div>
           </Card>
           
-          <Card className="p-4 shadow-soft bg-card border-2 border-primary/20">
+          <Card className="p-4 shadow-soft bg-white text-black border">
             <div className="flex items-center gap-3">
-              <Trophy className="w-8 h-8 text-primary" />
+              <Trophy className="w-8 h-8 text-black" />
               <div>
-                <p className="text-2xl font-bold text-foreground">{appData.userStats.totalTasks}</p>
-                <p className="text-sm text-muted-foreground">Total Tasks</p>
+                <p className="text-2xl font-bold text-black">{appData.userStats.totalTasks}</p>
+                <p className="text-sm text-gray-600">Total Tasks</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-4 shadow-soft bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+          <Card className="p-4 shadow-soft bg-white text-black border">
             <div className="flex items-center gap-3">
-              <Brain className="w-8 h-8" />
+              <Brain className="w-8 h-8 text-black" />
               <div>
-                <p className="text-2xl font-bold">{focusQuality}%</p>
-                <p className="text-sm opacity-90">Focus Quality</p>
+                <p className="text-2xl font-bold text-black">{focusQuality}%</p>
+                <p className="text-sm text-gray-600">Focus Quality</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-4 shadow-soft bg-gradient-to-r from-orange-500 to-red-500 text-white">
+          <Card className="p-4 shadow-soft bg-white text-black border">
             <div className="flex items-center gap-3">
-              <Timer className="w-8 h-8" />
+              <Timer className="w-8 h-8 text-black" />
               <div>
-                <p className="text-2xl font-bold">{avgSessionLength}m</p>
-                <p className="text-sm opacity-90">Avg Session</p>
+                <p className="text-2xl font-bold text-black">{avgSessionLength}m</p>
+                <p className="text-sm text-gray-600">Avg Session</p>
               </div>
             </div>
           </Card>
