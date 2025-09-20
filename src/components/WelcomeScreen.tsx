@@ -170,9 +170,7 @@ export const WelcomeScreen = ({
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Focus made
-                
-                <span className="text-foreground">simple</span>
+                Focus made Simple
                 <span className="text-2xl block text-muted-foreground font-normal mt-2">with AI</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
