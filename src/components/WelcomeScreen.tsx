@@ -231,7 +231,7 @@ export const WelcomeScreen = ({
               <h2 id="feature-list" className="text-lg font-semibold text-foreground">What you get:</h2>
               <ul className="grid grid-cols-1 gap-3" role="list">
                 {features.map((feature, index) => <li key={index} className="flex items-center gap-3">
-                    <div className={cn("w-6 h-6 rounded-full flex items-center justify-center", feature.highlight ? "bg-gradient-primary text-white" : "bg-primary/10 text-primary")}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center bg-foreground text-background">
                       {feature.icon}
                     </div>
                     <div>
