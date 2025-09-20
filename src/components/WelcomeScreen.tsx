@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -24,6 +25,7 @@ export const WelcomeScreen = ({
   hasCompletedOnboarding = false,
   onCompleteOnboarding
 }: WelcomeScreenProps) => {
+  const navigate = useNavigate();
   const [showOnboarding, setShowOnboarding] = useState(!hasCompletedOnboarding);
   const [currentStep, setCurrentStep] = useState(0);
   const [aiSettings] = useLocalStorage('aiSettings', {
@@ -139,7 +141,7 @@ export const WelcomeScreen = ({
       {/* Clean Header */}
       <header role="banner" className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <button onClick={onStartFocus} className="flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="Go to home - Start focus session">
+          <button onClick={() => navigate('/')} className="flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="Go to home page">
             <img src={logo} alt="TinySteps - ADHD Focus Assistant" className="h-8 w-8" />
             <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
             <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
