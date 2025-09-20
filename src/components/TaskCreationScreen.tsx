@@ -52,8 +52,7 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
   };
 
   const handleAiTaskSelect = (title: string, duration: number) => {
-    setTask(title);
-    setSelectedDuration(duration);
+    onCreateTask(title, duration);
   };
 
   const handleBreakdownStepSelect = (step: string, duration: number) => {
