@@ -171,7 +171,6 @@ export const WelcomeScreen = ({
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Focus made Simple
-                <span className="text-2xl block text-muted-foreground font-normal mt-2">with AI</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Break down overwhelming tasks into tiny, manageable steps. AI-powered productivity for minds that think differently.
