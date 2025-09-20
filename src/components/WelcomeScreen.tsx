@@ -227,9 +227,7 @@ export const WelcomeScreen = ({
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent dark:from-white dark:to-gray-300 leading-tight">
-                Focus made
-                <br />
-                <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
+                 Focus made <span className="bg-gradient-primary bg-clip-text text-transparent">simple</span>
                 <span className="text-2xl block text-muted-foreground font-normal mt-2">with AI</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
