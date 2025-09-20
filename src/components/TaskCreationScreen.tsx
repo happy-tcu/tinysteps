@@ -179,8 +179,8 @@ export const TaskCreationScreen = ({ onBack, onCreateTask }: TaskCreationScreenP
                         onClick={() => setSelectedDuration(duration.value)}
                         className={`h-16 flex flex-col transition-smooth ${
                           selectedDuration === duration.value 
-                            ? "bg-gradient-primary shadow-focus" 
-                            : "hover:bg-primary-soft hover:border-primary/40"
+                            ? "bg-gradient-primary shadow-focus text-white" 
+                            : "hover:bg-primary-soft hover:border-primary/40 text-foreground"
                         }`}
                       >
                         <span className="font-bold text-base">{duration.label}</span>
