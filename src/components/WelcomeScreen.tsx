@@ -139,14 +139,14 @@ export const WelcomeScreen = ({
       {/* Clean Header */}
       <header role="banner" className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          <button onClick={onStartFocus} className="flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="Go to home - Start focus session">
             <img src={logo} alt="TinySteps - ADHD Focus Assistant" className="h-8 w-8" />
             <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
             <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
             {!aiSettings.openaiApiKey && <Badge variant="outline" className="text-xs text-orange-600 border-orange-200">
                 Setup Required
               </Badge>}
-          </div>
+          </button>
           <nav role="navigation" aria-label="Main navigation" className="flex gap-2">
             <Button variant="ghost" size="sm" onClick={onOpenSettings} className="gap-2" aria-label="Open settings">
               <Settings className="w-4 h-4" />
