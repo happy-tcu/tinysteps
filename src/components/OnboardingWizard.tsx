@@ -17,6 +17,7 @@ export const OnboardingWizard = ({ onComplete, onStartQuickFocus }: OnboardingWi
   const [taskInput, setTaskInput] = useState("");
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [completedSession, setCompletedSession] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5 * 60); // 5 minutes in seconds
   const { addCompletedSession } = useSupabaseData();
   const { toast } = useToast();
@@ -53,6 +54,7 @@ export const OnboardingWizard = ({ onComplete, onStartQuickFocus }: OnboardingWi
   const handleTimerComplete = async () => {
     try {
       await addCompletedSession(taskInput, 5);
+      setCompletedSession(true);
       toast({
         title: "Amazing! 🎉",
         description: "You completed your first focus session!",
@@ -60,7 +62,8 @@ export const OnboardingWizard = ({ onComplete, onStartQuickFocus }: OnboardingWi
       setStep(2);
     } catch (error) {
       console.error('Error saving session:', error);
-      // Still move to step 2 even if save fails
+      // Still move to step 2 and mark as completed even if save fails
+      setCompletedSession(true);
       setStep(2);
     }
   };
@@ -74,6 +77,10 @@ export const OnboardingWizard = ({ onComplete, onStartQuickFocus }: OnboardingWi
 
   const handleSkip = () => {
     // Skip directly to step 2 without saving a session
+    // Stop the timer and reset state to prevent handleTimerComplete from firing
+    setIsTimerRunning(false);
+    setSessionStarted(false);
+    setTimeLeft(5 * 60); // Reset time
     setStep(2);
     toast({
       title: "Skipped",
@@ -236,12 +243,20 @@ export const OnboardingWizard = ({ onComplete, onStartQuickFocus }: OnboardingWi
         return (
           <div className="space-y-6">
             <div className="text-center space-y-3">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-8 h-8 text-white" aria-hidden="true" />
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto ${completedSession ? 'bg-green-500' : 'bg-gradient-primary'}`}>
+                {completedSession ? (
+                  <CheckCircle2 className="w-8 h-8 text-white" aria-hidden="true" />
+                ) : (
+                  <Brain className="w-8 h-8 text-white" aria-hidden="true" />
+                )}
               </div>
-              <h2 className="text-2xl font-bold">Great job! 🎉</h2>
+              <h2 className="text-2xl font-bold">
+                {completedSession ? "Great job! 🎉" : "No Problem!"}
+              </h2>
               <p className="text-muted-foreground">
-                You just completed your first focus session! See how easy that was?
+                {completedSession 
+                  ? "You just completed your first focus session! See how easy that was?"
+                  : "Whenever you're ready to focus, TinySteps is here to help. Let's explore what makes it special!"}
               </p>
             </div>
 
@@ -266,7 +281,7 @@ export const OnboardingWizard = ({ onComplete, onStartQuickFocus }: OnboardingWi
               data-testid="button-next-onboarding-step"
               aria-label="Continue to next step"
             >
-              Show Me How
+              {completedSession ? "Show Me How" : "Tell Me More"}
               <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
             </Button>
           </div>
