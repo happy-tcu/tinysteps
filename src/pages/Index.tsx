@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { WelcomeScreen } from "@/components/WelcomeScreen";
-import { TaskCreationScreen } from "@/components/TaskCreationScreen";
+import { SimpleTaskCreation } from "@/components/SimpleTaskCreation";
 import { FocusTimer } from "@/components/FocusTimer";
 import { BreakScreen } from "@/components/BreakScreen";
 import { ProgressDashboard } from "@/components/ProgressDashboard";
 import { SettingsScreen } from "@/components/SettingsScreen";
+import { OnboardingWizard } from "@/components/OnboardingWizard";
 import AuthGuard from "@/components/AuthGuard";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LoadingTransition } from "@/components/LoadingTransition";
@@ -76,7 +77,12 @@ const Index = () => {
 
   const handleCompleteOnboarding = useCallback(() => {
     setAppPreferences(prev => ({ ...prev, hasCompletedOnboarding: true }));
-  }, [setAppPreferences]);
+    transitionToState('welcome');
+  }, [setAppPreferences, transitionToState]);
+
+  const handleStartQuickFocus = useCallback((taskName: string) => {
+    transitionToState('focus-timer', { name: taskName, duration: 5 });
+  }, [transitionToState]);
 
   // Persist app state
   useEffect(() => {
@@ -104,6 +110,20 @@ const Index = () => {
     }
   }, [currentState, currentTask]);
 
+  // Show onboarding wizard for new users
+  if (!appPreferences.hasCompletedOnboarding) {
+    return (
+      <ErrorBoundary>
+        <AuthGuard>
+          <OnboardingWizard 
+            onComplete={handleCompleteOnboarding}
+            onStartQuickFocus={handleStartQuickFocus}
+          />
+        </AuthGuard>
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <ErrorBoundary>
       <AuthGuard>
@@ -126,7 +146,7 @@ const Index = () => {
               )}
               
               {currentState === 'create-task' && (
-                <TaskCreationScreen 
+                <SimpleTaskCreation 
                   onBack={handleBackToWelcome}
                   onCreateTask={handleCreateTask}
                 />

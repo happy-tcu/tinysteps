@@ -60,7 +60,21 @@ The project is configured to run in the Replit environment:
 - Configured deployment settings for Replit autoscale
 - Installed all npm dependencies
 
-### Data Persistence Migration (Latest)
+### UX Improvements: Onboarding & Simplified Task Creation (Latest)
+- **Guided Onboarding Wizard**: 3-step wizard with inline 5-minute focus timer
+  - Step 1: Try a quick focus session with embedded timer (pause/resume/skip controls)
+  - Step 2: Celebrate completion and introduce AI features
+  - Step 3: Show benefits and complete onboarding
+  - Reduces cognitive load with one step at a time
+- **Simplified Task Creation**: Replaced complex multi-panel UI with clean, focused interface
+  - Single input field with smart defaults (25-min Pomodoro)
+  - Large touch targets for mobile (48px+)
+  - Quick starter suggestions for common tasks
+  - Removed visual noise and distractions
+  - ADHD-friendly progressive disclosure
+- Fixed GitHub Pages deployment (base path configured for /tinysteps/)
+
+### Data Persistence Migration
 - **Created useSupabaseData hook**: Replaced all localStorage usage with real Supabase database persistence
   - Tasks now saved to `tasks` table
   - Focus sessions saved to `focus_sessions` table
