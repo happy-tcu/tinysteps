@@ -45,6 +45,21 @@ serve(async (req) => {
 
     console.log('Breaking down task for user:', user.email);
 
+    // Fetch recent conversation history for personalization
+    const { data: history } = await supabase
+      .from('ai_conversation_history')
+      .select('user_input, ai_response, created_at')
+      .eq('user_id', user.id)
+      .eq('function_type', 'breakdown')
+      .order('created_at', { ascending: false })
+      .limit(5);
+
+    const historyContext = history && history.length > 0
+      ? `\n\nUser's past task breakdowns (for personalization):\n${history.map(h => 
+          `- Task: ${h.user_input.task?.slice(0, 50)}...`
+        ).join('\n')}`
+      : '';
+
     const prompt = `You are an AI assistant specialized in helping people with ADHD and focus challenges break down tasks into manageable steps.
 
 Task: "${task}"
@@ -72,7 +87,9 @@ Format your response as JSON with this structure:
   "totalEstimatedTime": 45
 }
 
-Keep the language encouraging and practical. Focus on making the task feel achievable.`;
+Keep the language encouraging and practical. Focus on making the task feel achievable.${historyContext}
+
+IMPORTANT: Return ONLY valid JSON. Do not wrap your response in markdown code blocks or any other formatting.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -83,11 +100,11 @@ Keep the language encouraging and practical. Focus on making the task feel achie
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: 'You are a helpful AI assistant specialized in productivity and ADHD support.' },
+          { role: 'system', content: 'You are a helpful AI assistant specialized in productivity and ADHD support. Always respond with valid JSON only, never use markdown formatting or code blocks.' },
           { role: 'user', content: prompt }
         ],
         max_tokens: 1000,
-        temperature: 0.7,
+        temperature: 1.5,
       }),
     });
 
@@ -98,7 +115,10 @@ Keep the language encouraging and practical. Focus on making the task feel achie
     }
 
     const data = await response.json();
-    const aiResponse = data.choices[0].message.content;
+    let aiResponse = data.choices[0].message.content;
+
+    // Remove markdown code blocks if present
+    aiResponse = aiResponse.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
 
     let breakdown;
     try {
@@ -120,6 +140,15 @@ Keep the language encouraging and practical. Focus on making the task feel achie
         totalEstimatedTime: duration
       };
     }
+
+    // Save to conversation history
+    await supabase.from('ai_conversation_history').insert({
+      user_id: user.id,
+      function_type: 'breakdown',
+      user_input: { task, duration, context },
+      ai_response: breakdown,
+      context: { duration }
+    });
 
     console.log('Task breakdown generated successfully');
 

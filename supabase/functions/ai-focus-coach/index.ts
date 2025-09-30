@@ -41,6 +41,21 @@ serve(async (req) => {
 
     console.log('Generating AI coaching for user:', user.email, 'Type:', type);
 
+    // Fetch recent conversation history for personalization
+    const { data: history } = await supabase
+      .from('ai_conversation_history')
+      .select('user_input, ai_response, created_at')
+      .eq('user_id', user.id)
+      .eq('function_type', 'coach')
+      .order('created_at', { ascending: false })
+      .limit(5);
+
+    const historyContext = history && history.length > 0
+      ? `\n\nRecent coaching history:\n${history.map(h => 
+          `- ${new Date(h.created_at).toLocaleDateString()}: ${JSON.stringify(h.user_input).slice(0, 100)}`
+        ).join('\n')}`
+      : '';
+
     let prompt = '';
     
     if (type === 'pre-session') {
@@ -56,7 +71,7 @@ Provide a brief, encouraging pre-session message (2-3 sentences) that:
 2. Gives a specific tip for this session
 3. Motivates them to start
 
-Keep it warm, personal, and ADHD-friendly. Avoid overwhelming language.`;
+Keep it warm, personal, and ADHD-friendly. Avoid overwhelming language.${historyContext}`;
 
     } else if (type === 'post-session') {
       prompt = `You are an AI focus coach specializing in ADHD support. The user just completed a focus session.
@@ -73,7 +88,7 @@ Provide encouraging feedback (2-3 sentences) that:
 2. Acknowledges their progress
 3. Gives a gentle tip for next time (if appropriate)
 
-Be warm and supportive. Focus on effort over perfection.`;
+Be warm and supportive. Focus on effort over perfection.${historyContext}`;
 
     } else if (type === 'weekly-review') {
       prompt = `You are an AI focus coach specializing in ADHD support. Provide a weekly progress review.
@@ -90,7 +105,7 @@ Provide an encouraging weekly review (3-4 sentences) that:
 3. Motivates them for the upcoming week
 4. Includes a specific suggestion for improvement
 
-Be encouraging and focus on progress, not perfection.`;
+Be encouraging and focus on progress, not perfection.${historyContext}`;
 
     } else {
       // Default encouragement
@@ -101,7 +116,7 @@ User stats:
 - Total sessions: ${userStats?.total_sessions || 0}
 - Level: ${userStats?.level || 1}
 
-Provide a brief, encouraging message (2-3 sentences) that motivates them to keep going with their focus practice.`;
+Provide a brief, encouraging message (2-3 sentences) that motivates them to keep going with their focus practice.${historyContext}`;
     }
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -115,12 +130,12 @@ Provide a brief, encouraging message (2-3 sentences) that motivates them to keep
         messages: [
           { 
             role: 'system', 
-            content: 'You are a supportive AI focus coach who specializes in helping people with ADHD. Be encouraging, practical, and warm in your responses. Keep messages concise and actionable.' 
+            content: 'You are a supportive AI focus coach who specializes in helping people with ADHD. Be encouraging, practical, and warm in your responses. Keep messages concise and actionable. Respond ONLY with plain text, no markdown formatting or code blocks.' 
           },
           { role: 'user', content: prompt }
         ],
         max_tokens: 200,
-        temperature: 0.8,
+        temperature: 1.5,
       }),
     });
 
@@ -132,6 +147,15 @@ Provide a brief, encouraging message (2-3 sentences) that motivates them to keep
 
     const data = await response.json();
     const coaching = data.choices[0].message.content.trim();
+
+    // Save to conversation history
+    await supabase.from('ai_conversation_history').insert({
+      user_id: user.id,
+      function_type: 'coach',
+      user_input: { type, sessionData, userStats },
+      ai_response: { coaching },
+      context: { type }
+    });
 
     console.log('AI coaching generated successfully');
 

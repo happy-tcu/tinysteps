@@ -41,6 +41,21 @@ serve(async (req) => {
 
     console.log('Generating task suggestions for user:', user.email);
 
+    // Fetch recent conversation history for personalization
+    const { data: history } = await supabase
+      .from('ai_conversation_history')
+      .select('user_input, ai_response, created_at')
+      .eq('user_id', user.id)
+      .eq('function_type', 'suggestions')
+      .order('created_at', { ascending: false })
+      .limit(5);
+
+    const historyContext = history && history.length > 0
+      ? `\n\nUser's past preferences (learn from these to personalize suggestions):\n${history.map(h => 
+          `- Mood: ${h.user_input.mood}, Time: ${h.user_input.timeAvailable}min`
+        ).join('\n')}`
+      : '';
+
     const prompt = `You are an AI assistant specialized in helping people with ADHD and focus challenges choose appropriate tasks.
 
 Context:
@@ -76,7 +91,9 @@ Format your response as JSON:
   ]
 }
 
-Make suggestions specific, achievable, and motivating for someone with ADHD.`;
+Make suggestions specific, achievable, and motivating for someone with ADHD.${historyContext}
+
+IMPORTANT: Return ONLY valid JSON. Do not wrap your response in markdown code blocks or any other formatting.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -87,11 +104,11 @@ Make suggestions specific, achievable, and motivating for someone with ADHD.`;
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: 'You are a helpful AI assistant specialized in productivity and ADHD support.' },
+          { role: 'system', content: 'You are a helpful AI assistant specialized in productivity and ADHD support. Always respond with valid JSON only, never use markdown formatting or code blocks.' },
           { role: 'user', content: prompt }
         ],
         max_tokens: 800,
-        temperature: 0.8,
+        temperature: 1.5,
       }),
     });
 
@@ -102,7 +119,10 @@ Make suggestions specific, achievable, and motivating for someone with ADHD.`;
     }
 
     const data = await response.json();
-    const aiResponse = data.choices[0].message.content;
+    let aiResponse = data.choices[0].message.content;
+
+    // Remove markdown code blocks if present
+    aiResponse = aiResponse.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
 
     let suggestions;
     try {
@@ -136,6 +156,15 @@ Make suggestions specific, achievable, and motivating for someone with ADHD.`;
         ]
       };
     }
+
+    // Save to conversation history
+    await supabase.from('ai_conversation_history').insert({
+      user_id: user.id,
+      function_type: 'suggestions',
+      user_input: { context, recentTasks, timeAvailable, mood },
+      ai_response: suggestions,
+      context: { mood, timeAvailable }
+    });
 
     console.log('Task suggestions generated successfully');
 

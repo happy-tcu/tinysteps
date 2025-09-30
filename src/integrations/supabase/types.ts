@@ -14,9 +14,40 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_conversation_history: {
+        Row: {
+          ai_response: Json
+          context: Json | null
+          created_at: string
+          function_type: string
+          id: string
+          user_id: string
+          user_input: Json
+        }
+        Insert: {
+          ai_response: Json
+          context?: Json | null
+          created_at?: string
+          function_type: string
+          id?: string
+          user_id: string
+          user_input: Json
+        }
+        Update: {
+          ai_response?: Json
+          context?: Json | null
+          created_at?: string
+          function_type?: string
+          id?: string
+          user_id?: string
+          user_input?: Json
+        }
+        Relationships: []
+      }
       contacts: {
         Row: {
           address_line: string | null
+          batch_id: string | null
           card_type: string
           city: string | null
           company: string | null
@@ -28,6 +59,8 @@ export type Database = {
           email: string | null
           email_confirmation: string | null
           entry_status: string | null
+          event_date: string | null
+          event_name: string | null
           first_name: string | null
           full_name: string
           gender: string | null
@@ -39,6 +72,7 @@ export type Database = {
           postal_code: string | null
           preferred_first_name: string | null
           raw_ocr_text: string | null
+          school_name: string | null
           source_user: string | null
           state_region: string | null
           title: string | null
@@ -48,6 +82,7 @@ export type Database = {
         }
         Insert: {
           address_line?: string | null
+          batch_id?: string | null
           card_type?: string
           city?: string | null
           company?: string | null
@@ -59,6 +94,8 @@ export type Database = {
           email?: string | null
           email_confirmation?: string | null
           entry_status?: string | null
+          event_date?: string | null
+          event_name?: string | null
           first_name?: string | null
           full_name: string
           gender?: string | null
@@ -70,6 +107,7 @@ export type Database = {
           postal_code?: string | null
           preferred_first_name?: string | null
           raw_ocr_text?: string | null
+          school_name?: string | null
           source_user?: string | null
           state_region?: string | null
           title?: string | null
@@ -79,6 +117,7 @@ export type Database = {
         }
         Update: {
           address_line?: string | null
+          batch_id?: string | null
           card_type?: string
           city?: string | null
           company?: string | null
@@ -90,6 +129,8 @@ export type Database = {
           email?: string | null
           email_confirmation?: string | null
           entry_status?: string | null
+          event_date?: string | null
+          event_name?: string | null
           first_name?: string | null
           full_name?: string
           gender?: string | null
@@ -101,6 +142,7 @@ export type Database = {
           postal_code?: string | null
           preferred_first_name?: string | null
           raw_ocr_text?: string | null
+          school_name?: string | null
           source_user?: string | null
           state_region?: string | null
           title?: string | null
@@ -300,7 +342,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cleanup_old_ai_history: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
