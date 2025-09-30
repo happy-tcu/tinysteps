@@ -126,7 +126,10 @@ export const useSupabaseData = () => {
     duration: number,
     quality?: number
   ) => {
-    if (!user) throw new Error('User not authenticated');
+    if (!user) {
+      console.error('Cannot save session: User not authenticated');
+      throw new Error('User not authenticated');
+    }
 
     const now = new Date().toISOString();
     const session: TablesInsert<'focus_sessions'> = {

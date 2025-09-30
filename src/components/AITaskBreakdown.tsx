@@ -66,7 +66,7 @@ const AITaskBreakdown: React.FC<AITaskBreakdownProps> = ({ task, duration, onSel
       <Card className="shadow-soft">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Brain className="w-5 h-5 text-foreground" />
+            <Brain className="w-5 h-5 text-foreground" aria-hidden="true" />
             AI Task Breakdown
           </CardTitle>
           <CardDescription>
@@ -78,8 +78,14 @@ const AITaskBreakdown: React.FC<AITaskBreakdownProps> = ({ task, duration, onSel
             onClick={generateBreakdown} 
             disabled={loading}
             className="w-full bg-gradient-primary"
+            data-testid="button-generate-breakdown"
+            aria-busy={loading}
+            aria-label={loading ? 'Analyzing task...' : 'Break down this task with AI'}
           >
-            {loading ? 'Analyzing...' : 'Break Down This Task'}
+            {loading && (
+              <span className="mr-2 inline-block animate-spin">⏳</span>
+            )}
+            {loading ? 'Analyzing task with AI...' : 'Break Down This Task'}
           </Button>
         </CardContent>
       </Card>

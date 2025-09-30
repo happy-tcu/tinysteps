@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play, Pause, Square, ArrowLeft } from "lucide-react";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
-import { useAppData } from "@/hooks/useAppData";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { useToast } from "@/hooks/use-toast";
 
 interface FocusTimerProps {
   task: string;
@@ -13,7 +14,8 @@ interface FocusTimerProps {
 }
 
 export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerProps) => {
-  const { addCompletedTask } = useAppData();
+  const { addCompletedSession } = useSupabaseData();
+  const { toast } = useToast();
   const { playSuccess, playStart, playProgress } = useSoundEffects();
   const [timeLeft, setTimeLeft] = useState(duration * 60); // convert to seconds
   const [isRunning, setIsRunning] = useState(false);
@@ -35,8 +37,15 @@ export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerPro
           if (prev <= 1) {
             setIsRunning(false);
             setIsCompleted(true);
-            // Save completed task to local storage
-            addCompletedTask({ name: task, duration });
+            // Save completed session to Supabase
+            addCompletedSession(task, duration).catch(error => {
+              console.error('Error saving session:', error);
+              toast({
+                variant: "destructive",
+                title: "Error saving session",
+                description: "Your progress was not saved. Please check your connection.",
+              });
+            });
             playSuccess();
             return 0;
           }
@@ -46,7 +55,7 @@ export const FocusTimer = ({ task, duration, onComplete, onBack }: FocusTimerPro
     }
     
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft, task, duration, addCompletedTask, playSuccess]);
+  }, [isRunning, timeLeft, task, duration, addCompletedSession, playSuccess, toast]);
 
   // Play progress sounds at milestones
   useEffect(() => {
