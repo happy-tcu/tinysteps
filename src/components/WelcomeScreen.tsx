@@ -145,7 +145,7 @@ export const WelcomeScreen = ({
             <img src={logo} alt="TinySteps - ADHD Focus Assistant" className="h-8 w-8" />
             <span className="text-2xl font-bold text-foreground">TinySteps</span>
             <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
-            {!aiSettings.openaiApiKey && <Badge variant="outline" className="text-xs text-orange-600 border-orange-200">
+            {!aiSettings.openaiApiKey && <Badge variant="outline" className="text-xs text-orange-600 border-orange-600">
                 Setup Required
               </Badge>}
           </button>
@@ -179,7 +179,7 @@ export const WelcomeScreen = ({
               </p>
               
               {/* AI Status Alert */}
-              {!aiSettings.openaiApiKey && <div className="p-4 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 rounded-lg">
+              {!aiSettings.openaiApiKey && <div className="p-4 bg-orange-50 dark:bg-orange-950/30 border border-orange-600 dark:border-orange-800 rounded-lg">
                   <div className="flex items-start gap-3">
                     <Brain className="w-5 h-5 text-orange-600 mt-0.5" />
                     <div>
@@ -187,7 +187,7 @@ export const WelcomeScreen = ({
                       <p className="text-sm text-orange-700 dark:text-orange-200 mt-1">
                         Add your OpenAI API key in Settings to unlock AI task breakdown, suggestions, and coaching.
                       </p>
-                      <Button variant="outline" size="sm" onClick={onOpenSettings} className="mt-2 border-orange-300 text-orange-700 hover:bg-orange-100">
+                      <Button variant="outline" size="sm" onClick={onOpenSettings} className="mt-2 border-orange-600 text-orange-700 hover:bg-orange-100">
                         Setup AI Features
                       </Button>
                     </div>

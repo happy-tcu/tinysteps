@@ -38,7 +38,7 @@ const Landing = () => {
 
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-20 text-center bg-gradient-background">
-        <Badge variant="outline" className="mb-6 px-6 py-2 border-foreground/20 dark:border-foreground/30 text-foreground bg-foreground/5 dark:bg-foreground/10 hover:bg-foreground/10 dark:hover:bg-foreground/20 transition-colors">
+        <Badge variant="outline" className="mb-6 px-6 py-2 border-foreground/50 dark:border-foreground/30 text-foreground bg-foreground/5 dark:bg-foreground/10 hover:bg-foreground/10 dark:hover:bg-foreground/20 transition-colors">
           Finally, productivity that works
         </Badge>
         
@@ -64,7 +64,7 @@ const Landing = () => {
             <BrainCircuit className="mr-2 text-current" />
             Start Focusing Now
           </Button>
-          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-primary/20 hover:bg-primary-soft text-foreground" onClick={() => document.getElementById('features')?.scrollIntoView({
+          <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-foreground/50 hover:bg-accent text-foreground" onClick={() => document.getElementById('features')?.scrollIntoView({
           behavior: 'smooth'
         })}>
             Learn More
@@ -260,7 +260,7 @@ const Landing = () => {
             <Button size="lg" className="text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-success" onClick={() => navigate('/auth')}>
               Start Free Today
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/30 hover:bg-background/90" onClick={() => document.getElementById('features')?.scrollIntoView({
+            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-background text-foreground border-foreground/50 hover:bg-accent" onClick={() => document.getElementById('features')?.scrollIntoView({
             behavior: 'smooth'
           })}>
               View Features
