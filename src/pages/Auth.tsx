@@ -111,7 +111,7 @@ const Auth = () => {
         <Card className="w-full max-w-sm mx-auto border-0 shadow-none bg-transparent">
           <CardHeader className="pb-8 text-center">
             <div className="mb-6">
-              <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
+              <h1 className="text-3xl font-bold text-foreground mb-2">
                 TinySteps
               </h1>
             </div>

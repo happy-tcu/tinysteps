@@ -22,7 +22,7 @@ const Landing = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <img src={logo} alt="TinySteps" className="h-8 w-8" />
-            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
+            <span className="text-2xl font-bold text-foreground">TinySteps</span>
           </div>
           <div className="flex gap-2 items-center">
             <ThemeToggle />
@@ -38,7 +38,7 @@ const Landing = () => {
 
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-20 text-center bg-gradient-background">
-        <Badge variant="outline" className="mb-6 px-6 py-2 border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
+        <Badge variant="outline" className="mb-6 px-6 py-2 border-foreground/20 dark:border-foreground/30 text-foreground bg-foreground/5 dark:bg-foreground/10 hover:bg-foreground/10 dark:hover:bg-foreground/20 transition-colors">
           Finally, productivity that works
         </Badge>
         
@@ -203,41 +203,41 @@ const Landing = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="p-8 text-center border-2 hover:border-primary/30 transition-all shadow-soft hover:shadow-focus">
-              <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-6 h-6 text-foreground" />
+            <Card className="p-8 text-center border-2 hover:border-primary/30 transition-all shadow-soft hover:shadow-focus bg-card">
+              <div className="w-12 h-12 bg-primary dark:bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-6 h-6 text-primary-foreground dark:text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">AI Task Breakdown</h3>
+              <h3 className="text-lg font-semibold mb-2 text-card-foreground">AI Task Breakdown</h3>
               <p className="text-muted-foreground text-sm">
                 Turn overwhelming projects into tiny, manageable steps
               </p>
             </Card>
 
-            <Card className="p-8 text-center border-2 hover:border-secondary/30 transition-all shadow-soft hover:shadow-focus">
-              <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mx-auto mb-4">
+            <Card className="p-8 text-center border-2 hover:border-secondary/30 transition-all shadow-soft hover:shadow-focus bg-card">
+              <div className="w-12 h-12 bg-secondary dark:bg-secondary/40 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Timer className="w-6 h-6 text-secondary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Gentle Timers</h3>
+              <h3 className="text-lg font-semibold mb-2 text-card-foreground">Gentle Timers</h3>
               <p className="text-muted-foreground text-sm">
                 Focus sessions that adapt to your energy and attention
               </p>
             </Card>
 
-            <Card className="p-8 text-center border-2 hover:border-accent/30 transition-all shadow-soft hover:shadow-focus">
-              <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4">
+            <Card className="p-8 text-center border-2 hover:border-accent/30 transition-all shadow-soft hover:shadow-focus bg-card">
+              <div className="w-12 h-12 bg-accent dark:bg-accent/40 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Focus className="w-6 h-6 text-accent-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Single Focus</h3>
+              <h3 className="text-lg font-semibold mb-2 text-card-foreground">Single Focus</h3>
               <p className="text-muted-foreground text-sm">
                 One task, one timer, no distractions or overwhelming choices
               </p>
             </Card>
 
-            <Card className="p-8 text-center border-2 hover:border-warning/30 transition-all shadow-soft hover:shadow-focus">
-              <div className="w-12 h-12 bg-warning rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-6 h-6 text-warning-foreground" />
+            <Card className="p-8 text-center border-2 hover:border-warning/30 transition-all shadow-soft hover:shadow-focus bg-card">
+              <div className="w-12 h-12 bg-foreground dark:bg-foreground/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-6 h-6 text-background dark:text-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Progress Tracking</h3>
+              <h3 className="text-lg font-semibold mb-2 text-card-foreground">Progress Tracking</h3>
               <p className="text-muted-foreground text-sm">
                 Celebrate small wins and build sustainable habits
               </p>

@@ -143,7 +143,7 @@ export const WelcomeScreen = ({
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <button onClick={() => navigate('/')} className="flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="Go to home page">
             <img src={logo} alt="TinySteps - ADHD Focus Assistant" className="h-8 w-8" />
-            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">TinySteps</span>
+            <span className="text-2xl font-bold text-foreground">TinySteps</span>
             <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
             {!aiSettings.openaiApiKey && <Badge variant="outline" className="text-xs text-orange-600 border-orange-200">
                 Setup Required
