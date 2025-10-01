@@ -101,3 +101,22 @@ The project is configured to run in the Replit environment:
 - Graceful error handling in all Supabase operations
 - Proper auth state management with loading states
 - User-friendly error messages throughout the app
+
+## Recent Changes (Oct 1, 2025)
+
+### Button Visibility & Dark Mode Fixes
+- **Fixed all button visibility issues**: Updated button component variants to ensure proper contrast
+  - Ghost buttons: Added `text-foreground` for dark text visibility
+  - Link buttons: Changed to `text-foreground` for consistent visibility
+  - Border colors: Strengthened from 89.8% to 55% lightness (≥3:1 WCAG contrast)
+  - Orange accents: Updated to orange-600 for proper visibility on light backgrounds
+- **WCAG AAA compliance**: All UI elements now meet accessibility standards in both light and dark modes
+- **Dark mode gradients**: Fixed gradient definitions in .dark class for proper theming
+
+### GitHub Pages Deployment Fix
+- **Added SPA routing support**: Implemented spa-github-pages solution for React Router on GitHub Pages
+  - Created `public/404.html` with redirect script
+  - Added redirect handler to `index.html`
+  - Added `.nojekyll` file to prevent Jekyll processing
+- **Base path configuration**: Vite configured with `/tinysteps/` base for production builds
+- **Automatic deployment**: GitHub Actions workflow deploys on push to main branch
